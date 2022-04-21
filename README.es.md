@@ -33,6 +33,7 @@ Permitiendo determinar áreas que multiplican el daño o activan (Trigger) deter
 # Créditos y links
 
 Se reutilizaron las animaciones de un proyecto colaborativo previo (videojuego).
+
 Artistas:
-- Dose (Jose Bayugar): [Behance](www.behance.net/bayugarj79c4) - [Instagram](www.instagram.com/dose_jb/)
-- Ikumi: [Instagram](www.instagram.com/ikumi_arte/)
+- Dose (Jose Bayugar): [Behance](https://www.behance.net/bayugarj79c4) - [Instagram](https://www.instagram.com/dose_jb/)
+- Ikumi: [Instagram](https://www.instagram.com/ikumi_arte/)
