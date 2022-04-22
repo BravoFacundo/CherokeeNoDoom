@@ -32,7 +32,7 @@ Allowing to determine areas that multiply the damage or trigger certain events.
 
 # Links and credits
 
-Animations from a previous video game collaborative project were reused.
+Animations were reused from a collaborative video game project.
 
 Artists:
 - Dose (Jose Bayugar): [Behance](https://www.behance.net/bayugarj79c4) - [Instagram](https://www.instagram.com/dose_jb/)
