@@ -24,7 +24,7 @@ Realizar un shooter retro me permite limitar el tamaño del proyecto y diferente
 Para lograr la utilización del sprite como hitbox se implementó un sistema de raycast con detección de coordenadas de impacto sobre la textura del sprite.
 Posteriormente se chequea si el pixel en esa coordenada pertenece al alpha de la imagen.
 
-Si el impacto sobre la textura pertenece a la parte visible de la imagen entonces se considera impacto.
+Si el impacto del Raycast sobre la textura pertenece a la parte visible de la imagen entonces se considera impacto.
 Si pertenece a la parte invisible de la imagen (su alpha) entonces no se considera impacto y es descartado.
 
 De igual manera se puede chequear la misma coordenada del impacto sobre distintas texturas almacenadas (Que también pueden estar animadas).
