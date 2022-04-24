@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//https://forum.unity.com/threads/raycast-alpha-information.24159/
-
 public class Test : MonoBehaviour
 {
     public Texture2D characterTexture;
