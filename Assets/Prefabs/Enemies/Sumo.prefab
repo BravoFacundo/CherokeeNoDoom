@@ -111,7 +111,7 @@ Animator:
   m_GameObject: {fileID: 1739950743298181689}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 516ed6921b580d8479f2a650540780a1, type: 2}
+  m_Controller: {fileID: 9100000, guid: acafdc960e7b6444598d3af68ec34498, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -179,9 +179,9 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
-  sightRange: 5
+  sightRange: 10
   playerInSightRange: 0
-  attackRange: 1.5
+  attackRange: 0.5
   playerInAttackRange: 0
   timeBetweenAttacks: 0
 --- !u!195 &6456038905839283540
@@ -194,7 +194,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

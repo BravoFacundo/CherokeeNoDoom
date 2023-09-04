@@ -69,6 +69,7 @@ public class Enemy : MonoBehaviour
     private void AttackPlayer()
     {
         enemyAnimator.SetBool("Idle", true);
+        enemyAnimator.SetBool("Run", false);
         agent.SetDestination(transform.position);
     }
     private void EnemyDie()

@@ -639,7 +639,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
-  sightRange: 5
+  sightRange: 10
   playerInSightRange: 0
   attackRange: 1.5
   playerInAttackRange: 0
