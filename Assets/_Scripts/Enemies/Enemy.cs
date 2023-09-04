@@ -20,9 +20,14 @@ public class Enemy : MonoBehaviour
     public float timeBetweenAttacks;
     bool alreadyAttacked;
 
+    [Header("Animator")]
+    private Animator enemyAnimator;
+    private bool enemyDied = false;
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        enemyAnimator = gameObject.GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -30,32 +35,48 @@ public class Enemy : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerLayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerLayer);
 
-        if (!playerInSightRange && !playerInAttackRange)
+        if (!enemyDied)
         {
-            WaitForPlayer();
-        }
-        else if (playerInSightRange && !playerInAttackRange)
-        {
-            ChasePlayer();
-        }
-        else if (playerInSightRange && playerInAttackRange)
-        {
-            AttackPlayer();
+            if (!playerInSightRange && !playerInAttackRange)
+            {
+                WaitForPlayer();
+            }
+            else if (playerInSightRange && !playerInAttackRange)
+            {
+                ChasePlayer();
+            }
+            else if (playerInSightRange && playerInAttackRange)
+            {
+                AttackPlayer();
+            }
         }
 
-        transform.LookAt(player);
+        if (Input.GetKeyDown(KeyCode.F)) EnemyDie();
     }
 
     private void WaitForPlayer()
     {
-
+        enemyAnimator.SetBool("Idle", true);
+        enemyAnimator.SetBool("Run", false);
+        agent.SetDestination(transform.position);
     }
     private void ChasePlayer()
     {
+        enemyAnimator.SetBool("Idle", false);
+        enemyAnimator.SetBool("Run", true);
         agent.SetDestination(player.position);
     }
     private void AttackPlayer()
     {
+        enemyAnimator.SetBool("Idle", true);
+        agent.SetDestination(transform.position);
+    }
+    private void EnemyDie()
+    {
+        enemyDied = true;
+        enemyAnimator.SetBool("Death", true);
+        enemyAnimator.SetBool("Idle", false);
+        enemyAnimator.SetBool("Run", false);
         agent.SetDestination(transform.position);
     }
 }
