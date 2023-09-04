@@ -328,7 +328,7 @@ GameObject:
   - component: {fileID: 5117291380238962620}
   - component: {fileID: 5117291380238962623}
   m_Layer: 0
-  m_Name: OldEnemy
+  m_Name: OldRigidbodyEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
