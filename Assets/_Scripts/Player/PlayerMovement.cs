@@ -4,120 +4,77 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    float playerHeight = 2f;
-    Rigidbody rb;
-    [SerializeField] Transform orientation;
-    [SerializeField] PhysicMaterial playerPMat;
-
     [Header("Movement")]
-    public float moveSpeed = 6f;
-    public float gravityForce = 20f;
-    float movementMultiplier = 10f;
-    [SerializeField] float airMultiplier = 0.4f;
+    public float moveSpeed = 6f; //Debug
+    public float movementMultiplier = 10f;
+    public float airMovementMultiplier = 0.3f;
 
-    [Header("Sprinting")]
-    [SerializeField] float walkSpeed = 4f;
-    [SerializeField] float sprintSpeed = 6f;
-    [SerializeField] float acceleration = 10f;
+    float horizontalMovement;
+    float verticalMovement;
+    [HideInInspector] public Vector3 moveDirection;
+    Vector3 slopeDirection;
 
     [Header("Jumping")]
     public float aditionalJumps = 1;
-    public float jumpForce = 5f;
+    public float jumpForce = 25f;
+    public float fallForce = 20f;
     float storeJumps;
 
-    [Header("Ground Detection")]
-    [SerializeField] Transform groundCheck;
-    [SerializeField] LayerMask groundMask;
-    [SerializeField] float groundDistance = 0.1f;
-    [SerializeField] bool isGrounded; 
+    [Header("Sprinting")]
+    [SerializeField] float walkSpeed = 5f;
+    [SerializeField] float sprintSpeed = 10f;
+    [SerializeField] float acceleration = 10f;
 
     [Header("Drag")]
-    public float groundDrag = 6f;
-    public float airDrag = 2f;
+    [SerializeField] float groundDrag = 6f;
+    [SerializeField] float airDrag = 2f;
+    [SerializeField] float waterDrag = 10f;
 
-    [Header("Keybinds")]
+    [Header("Ground Detection")]
+    [SerializeField] bool isGrounded; //Debug
+    [SerializeField] float groundDistance = 0.2f;
+    [SerializeField] LayerMask groundMask;
+
+    [Header("Inputs")]
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
-    [SerializeField] KeyCode sprintKey = KeyCode.LeftShift;
+    [SerializeField] KeyCode sprintKey = KeyCode.LeftControl;
 
-    float horizontalMovement;
-    float verticalMovement;    
-
-    Vector3 moveDirection;
-    Vector3 slopeMoveDirection;
-
-    RaycastHit slopeHit;
-    private bool OnSlope()
-    {
-        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.5f))
-        {
-            if (slopeHit.normal != Vector3.up)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        return false;
-    }
+    [Header("Self References")]
+    public Transform storePlayerOrientation;
+    [SerializeField] Transform groundCheck;
+    PhysicMaterial playerPhysicsMat;
+    [HideInInspector] public Rigidbody rb;
+    [HideInInspector] public Collider col;
+    [HideInInspector] public Camera cam;
 
     private void Start()
     {
+        cam = GetComponentInChildren<Camera>();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+        col = GetComponentInChildren<Collider>();
         storeJumps = aditionalJumps;
+        playerPhysicsMat = GetComponentInChildren<Collider>().material;
     }
-
-    private void Update()
+    protected virtual void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-        //isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.1f );
-        //print(isGrounded);
+        slopeDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
 
-        MyInput();
+        MoveInput();
+        SprintInput();
+        JumpInput();
+        
         ControlDrag();
-        ControlSpeed();
-
-        if (isGrounded) //se ejecuta todo el tiempo, a lo mejor con un lock tiene mejor performance
-        {
-            aditionalJumps = storeJumps;
-        }
-        if (Input.GetKeyDown(jumpKey))
-        {
-            if (aditionalJumps == 0 && isGrounded) //isGrounded le da limite de saltos, sino es infinito.
-            {
-                rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-                Jump();
-            } 
-            else
-            if (aditionalJumps != 0) //Si hay multiples saltos no se checkea isGrounded.
-            {
-                Jump();
-                aditionalJumps -= 1;
-            }          
-        }
-
-        slopeMoveDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
     }
 
-    void MyInput()
+    void MoveInput()
     {
         horizontalMovement = Input.GetAxisRaw("Horizontal");
         verticalMovement = Input.GetAxisRaw("Vertical");
-
-        moveDirection = orientation.forward * verticalMovement + orientation.right * horizontalMovement;
-
+        moveDirection = storePlayerOrientation.forward * verticalMovement + storePlayerOrientation.right * horizontalMovement;
     }
-
-    void Jump()
-    {
-        //With ForceMode.Impulse the jump height will be dependent on mass,
-        //if this isn't what you want, change Impulse to VelocityChange
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-    }
-
-    void ControlSpeed()
+    void SprintInput()
     {
         if (Input.GetKey(sprintKey) && isGrounded)
         {
@@ -128,43 +85,71 @@ public class PlayerMovement : MonoBehaviour
             moveSpeed = Mathf.Lerp(moveSpeed, walkSpeed, acceleration * Time.deltaTime);
         }
     }
+    void JumpInput()
+    {
+        if (isGrounded) aditionalJumps = storeJumps;
+        if (Input.GetKeyDown(jumpKey))
+        {
+            if (aditionalJumps == 0 && isGrounded)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+                PlayerJump();
+            }
+            else
+            if (aditionalJumps != 0)
+            {
+                PlayerJump();
+                aditionalJumps -= 1;
+            }
+        }
+    }
+
+    //---------- PHYSICS -----------------------------------------------------------------------------------------------------------------//
+
+    protected virtual void FixedUpdate()
+    {
+        PlayerMove();
+    }
+    void PlayerMove()
+    {
+        if (isGrounded && !OnSlope())
+        {
+            playerPhysicsMat.dynamicFriction = 0;
+            rb.AddForce(movementMultiplier * moveSpeed * moveDirection.normalized, ForceMode.Acceleration);
+        }
+        else if (isGrounded && OnSlope())
+        {
+            playerPhysicsMat.dynamicFriction = 1;
+            rb.AddForce(movementMultiplier * moveSpeed * slopeDirection.normalized, ForceMode.Acceleration);
+        }
+        else if (!isGrounded)
+        {
+            rb.AddForce(airMovementMultiplier * movementMultiplier * moveSpeed * moveDirection.normalized, ForceMode.Acceleration);
+            rb.AddForce(-transform.up * fallForce, ForceMode.Acceleration);
+        }
+    }
+    void PlayerJump() => rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+
+    //---------- CONTROL FUNCTIONS ---------------------------------------------------------------------------------------------------//
 
     void ControlDrag()
     {
         if (isGrounded)
         {
             rb.drag = groundDrag;
+            //if (onWater) rb.drag = waterDrag;
         }
-        else if (!isGrounded)
-        {
-            rb.drag = airDrag;
-        }
+        else if (!isGrounded) rb.drag = airDrag;
     }
 
-    private void FixedUpdate()
+    RaycastHit slopeHit;
+    private bool OnSlope()
     {
-        MovePlayer(); 
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, 1.5f))
+        {
+            if (slopeHit.normal != Vector3.up) return true;
+            else return false;
+        }
+        return false;
     }
-
-    void MovePlayer()
-    {
-        if (isGrounded && !OnSlope())
-        {
-            playerPMat.dynamicFriction = 0;
-            rb.AddForce(moveDirection.normalized * moveSpeed * movementMultiplier, ForceMode.Acceleration);
-        }
-        else if (isGrounded && OnSlope())
-        {
-            playerPMat.dynamicFriction = 1; //Si se desea que el player no baje solo las pendientes
-            //Aunque esto agrega la necesidad de detectar la pendiente y fijar un limite
-            rb.AddForce(slopeMoveDirection.normalized * moveSpeed * movementMultiplier, ForceMode.Acceleration);
-        }
-        else if (!isGrounded)
-        {
-            rb.AddForce(moveDirection.normalized * moveSpeed * movementMultiplier * airMultiplier, ForceMode.Acceleration);
-            rb.AddForce(-transform.up * gravityForce, ForceMode.Acceleration);
-        }
-    }
-
-
 }

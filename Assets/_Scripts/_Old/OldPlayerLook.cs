@@ -2,35 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerLook : MonoBehaviour
+public class OldPlayerLook : MonoBehaviour
 {
-    [Header("Sensitivity")]
     [SerializeField] private float sensX;
     [SerializeField] private float sensY;
-    float multiplier = 0.01f;    
+
+    [SerializeField] Transform cam;
+    [SerializeField] Transform orientation;
+
     float mouseX;
     float mouseY;
+
+    float multiplier = 0.01f;
+
     float xRotation;
     float yRotation;
-    
-    [Header("References")]
-    [SerializeField] Transform orientationObject;
-    Camera cam;
-    private void Awake()
-    {
-        cam = GetComponentInChildren<Camera>();
+
+    private void Start()
+    {        
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
     private void Update()
     {
-        MoveInput();
+        MyInput();
         cam.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
-        orientationObject.transform.rotation = Quaternion.Euler(0, yRotation, 0);
+        orientation.transform.rotation = Quaternion.Euler(0, yRotation, 0);
     }
 
-    void MoveInput()
+    void MyInput()
     {
         mouseX = Input.GetAxisRaw("Mouse X");
         mouseY = Input.GetAxisRaw("Mouse Y");
@@ -40,4 +41,5 @@ public class PlayerLook : MonoBehaviour
 
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
     }
+
 }

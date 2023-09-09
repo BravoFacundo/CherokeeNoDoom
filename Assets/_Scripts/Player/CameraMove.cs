@@ -6,7 +6,7 @@ public class CameraMove : MonoBehaviour
 {
     [SerializeField] Transform cameraPosition;
 
-    private void Awake()
+    private void Start()
     {
         transform.parent = null;
     }
@@ -17,7 +17,9 @@ public class CameraMove : MonoBehaviour
 
 }
 
-//Todo este script existe porque hay un "jittering" en la camara al moverse
-//Pero hay muchas soluciones distintas sugeridas para resolver esto distinto de como se hace aca
-//Por nombrar algunas: Usar LateUpdate(), "add Physics.SyncTransforms(); after changing transform"
-//o "replace transform.rotation with GetComponent<Rigidbody>().rotation"
+//This script exists because there is a "jittering" in the camera when moving.
+//Here is a list of suggested solutions to solve it without creating this script:
+// - Use LateUpdate();
+// - Add Physics.SyncTransforms(); after changing transform.
+// - Replace transform.rotation with GetComponent<Rigidbody>().rotation.
+//I tried all the solutions and it didn't work.
