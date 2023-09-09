@@ -10,7 +10,7 @@ Desarrollado utilizando:
 - Lenguaje C#
 - Unity 2021
 
-*Puedes ver el código [aquí](Assets/Scripts/).*
+*Puedes ver el código [aquí](Assets/_Scripts/).*
 
 # Idea y desarrollo
 
@@ -24,7 +24,7 @@ Realizar un shooter retro me permite limitar el tamaño del proyecto y diferente
 # Implementación
 
 Para lograr la utilización del sprite como hitbox se implementó un sistema de raycast con detección de coordenadas de impacto sobre la textura del sprite.
-Posteriormente se chequea si el pixel en esa coordenada pertenece al alpha de la imagen. *Mira el script [aquí](Assets/Scripts/Test.cs).*
+Posteriormente se chequea si el pixel en esa coordenada pertenece al alpha de la imagen. *Mira el script [aquí](Assets/_Scripts/_Examples/SpriteImpactDetectionExample.cs).*
 
 Si el impacto del Raycast sobre la textura pertenece a la parte visible de la imagen entonces se considera impacto.
 Si pertenece a la parte invisible de la imagen (su alpha) entonces no se considera impacto y es descartado.
