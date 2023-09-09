@@ -17,6 +17,9 @@ public class KunaiCharacterMovement : PlayerMovement
     {
         if (Input.GetKeyDown(dashKey)) PlayerDash();
     }
-    void PlayerDash() => transform.position += cam.transform.forward * 12f;
+    void PlayerDash()
+    {
+        transform.position += cam.transform.forward * 12f;
+    }
 
 }
