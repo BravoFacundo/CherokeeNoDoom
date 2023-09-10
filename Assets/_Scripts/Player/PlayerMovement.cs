@@ -152,4 +152,33 @@ public class PlayerMovement : MonoBehaviour
         }
         return false;
     }
+
+    //---------- EFFECTS FUNCTIONS ---------------------------------------------------------------------------------------------------//
+
+    public IEnumerator FastFOVChange(float newFOV, float changeTime)
+    {
+        float initialFOV = cam.fieldOfView;
+        float elapsedTime = 0f;
+
+        /*
+        while (elapsedTime < changeTime * 0.5)
+        {
+            cam.fieldOfView = Mathf.Lerp(initialFOV, newFOV, elapsedTime / changeTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        */
+
+        cam.fieldOfView = newFOV;
+
+        elapsedTime = 0f;
+        while (elapsedTime < changeTime)
+        {
+            cam.fieldOfView = Mathf.Lerp(newFOV, initialFOV, elapsedTime / changeTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        cam.fieldOfView = initialFOV;
+    }
 }

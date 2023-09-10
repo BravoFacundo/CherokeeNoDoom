@@ -9,6 +9,7 @@ public class CameraMove : MonoBehaviour
     private void Start()
     {
         transform.parent = null;
+
     }
     private void Update()
     {

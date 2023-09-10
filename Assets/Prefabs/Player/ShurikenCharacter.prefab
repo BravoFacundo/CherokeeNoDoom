@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 3652049743697825524}
   m_Layer: 0
   m_Name: Camera Holder
-  m_TagString: Untagged
+  m_TagString: CameraHolder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -298,6 +298,9 @@ MonoBehaviour:
   col: {fileID: 0}
   cam: {fileID: 0}
   dashKey: 304
+  dashForce: 45
+  dashFOVChange: 135
+  dashFOVReturnTime: 0.5
 --- !u!114 &1402105023922949795
 MonoBehaviour:
   m_ObjectHideFlags: 0

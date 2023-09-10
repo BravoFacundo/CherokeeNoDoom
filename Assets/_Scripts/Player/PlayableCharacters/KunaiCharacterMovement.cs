@@ -7,6 +7,11 @@ public class KunaiCharacterMovement : PlayerMovement
     [Header("Character Skills Inputs")]
     [SerializeField] KeyCode dashKey = KeyCode.LeftShift;
 
+    [Header("Dash Skill")]
+    [SerializeField] float dashLenght = 12f;
+    [SerializeField] private float dashFOVChange = 120f;
+    [SerializeField] private float dashFOVReturnTime = 0.5f;
+
     protected override void Update()
     {
         base.Update();
@@ -19,7 +24,8 @@ public class KunaiCharacterMovement : PlayerMovement
     }
     void PlayerDash()
     {
-        transform.position += cam.transform.forward * 12f;
+        transform.position += cam.transform.forward * dashLenght;
+        StartCoroutine(FastFOVChange(dashFOVChange, dashFOVReturnTime));
     }
 
 }
