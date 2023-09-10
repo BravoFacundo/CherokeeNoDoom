@@ -8,7 +8,7 @@
 
 Desarrollado utilizando:
 - Lenguaje C#
-- Unity 2021
+- Unity 2022.3.7f1
 
 *Puedes ver el código [aquí](Assets/_Scripts/).*
 
