@@ -2,19 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
     [Header("Configuration")]
-    [SerializeField] private Transform player;
+    public LayerMask groundLayer;
+    public LayerMask playerLayer;
     NavMeshAgent agent;
-    public LayerMask groundLayer, playerLayer;
 
     [Header("States")]
     [SerializeField] private float sightRange;
     [SerializeField] private bool playerInSightRange;
     [SerializeField] private float attackRange;
     [SerializeField] private bool playerInAttackRange;
+    private bool alreadyAttack = false;
 
     [Header("Attacking")]
     public float timeBetweenAttacks;
@@ -24,10 +26,14 @@ public class Enemy : MonoBehaviour
     private Animator enemyAnimator;
     private bool enemyDied = false;
 
+    [Header("References")]
+    [SerializeField] Transform target;
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         enemyAnimator = gameObject.GetComponentInChildren<Animator>();
+        target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     private void Update()
@@ -35,7 +41,7 @@ public class Enemy : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerLayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerLayer);
 
-        if (!enemyDied)
+        if (!enemyDied && alreadyAttack == false)
         {
             if (!playerInSightRange && !playerInAttackRange)
             {
@@ -64,20 +70,25 @@ public class Enemy : MonoBehaviour
     {
         enemyAnimator.SetBool("Idle", false);
         enemyAnimator.SetBool("Run", true);
-        agent.SetDestination(player.position);
+        agent.SetDestination(target.position);
     }
     private void AttackPlayer()
     {
         enemyAnimator.SetBool("Idle", true);
         enemyAnimator.SetBool("Run", false);
         agent.SetDestination(transform.position);
+        alreadyAttack = true;
+
+        //Hardcoded
+        GameObject.Find("Death").GetComponent<Image>().enabled = true;
     }
-    private void EnemyDie()
+    public void EnemyDie()
     {
         enemyDied = true;
         enemyAnimator.SetBool("Death", true);
         enemyAnimator.SetBool("Idle", false);
         enemyAnimator.SetBool("Run", false);
         agent.SetDestination(transform.position);
+        Destroy(gameObject, 5f);
     }
 }

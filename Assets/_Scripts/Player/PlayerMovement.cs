@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -47,9 +48,12 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public Collider col;
     [HideInInspector] public Camera cam;
 
-    private void Start()
+    private void Awake()
     {
         cam = GetComponentInChildren<Camera>();
+    }
+    private void Start()
+    {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         col = GetComponentInChildren<Collider>();
@@ -64,6 +68,8 @@ public class PlayerMovement : MonoBehaviour
         MoveInput();
         SprintInput();
         JumpInput();
+
+        DebugInput();
         
         ControlDrag();
     }
@@ -180,5 +186,13 @@ public class PlayerMovement : MonoBehaviour
         }
 
         cam.fieldOfView = initialFOV;
+    }
+
+    void DebugInput()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Application.LoadLevel(Application.loadedLevel);
+        }
     }
 }

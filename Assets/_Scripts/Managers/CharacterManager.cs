@@ -9,8 +9,11 @@ public class CharacterManager : MonoBehaviour
 
     private void Start()
     {
-        Transform player = Instantiate(characters[activeCharacter].transform, transform);
-        player.parent = null;
+        if (GameObject.FindGameObjectWithTag("Player") == null)
+        {
+            Transform player = Instantiate(characters[activeCharacter].transform, transform);
+            player.parent = null;
+        }
     }
 
     void Update()

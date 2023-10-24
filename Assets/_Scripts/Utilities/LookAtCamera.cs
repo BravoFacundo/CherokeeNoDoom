@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class LookAtCamera : MonoBehaviour
 {
+    [Header("Configuration")]
+    [SerializeField] bool lockX = true;
+    [SerializeField] float maxRotationX = 0f;
+
+    [Header("References")]
     [SerializeField] private Transform target;
-    [SerializeField] private bool lockX = true;
-    [SerializeField] private float maxRotationX = 0f;
-    private Quaternion initialRotation;
 
     void Start()
     {
-        //target = Camera.main.gameObject.transform;
-        target = GameObject.Find("Player").transform;
-        initialRotation = transform.rotation;
+        target = GameObject.FindGameObjectWithTag("MainCamera").transform;
     }    
-
+    
     void Update()
     {
         transform.LookAt(target);
