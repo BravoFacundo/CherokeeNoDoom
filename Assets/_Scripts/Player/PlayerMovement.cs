@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 25f;
     public float fallForce = 20f;
     float storeJumps;
+    private bool readyToJump;
 
     [Header("Sprinting")]
     [SerializeField] float walkSpeed = 5f;
@@ -98,13 +99,13 @@ public class PlayerMovement : MonoBehaviour
         {
             if (aditionalJumps == 0 && isGrounded)
             {
+                readyToJump = true;
                 rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-                PlayerJump();
             }
             else
             if (aditionalJumps != 0)
             {
-                PlayerJump();
+                readyToJump = true;
                 aditionalJumps -= 1;
             }
         }
@@ -115,6 +116,7 @@ public class PlayerMovement : MonoBehaviour
     protected virtual void FixedUpdate()
     {
         PlayerMove();
+        PlayerJump();
     }
     void PlayerMove()
     {
@@ -134,7 +136,14 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(-transform.up * fallForce, ForceMode.Acceleration);
         }
     }
-    void PlayerJump() => rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+    void PlayerJump()
+    {
+        if (readyToJump)
+        {
+            rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+            readyToJump = false;
+        }
+    }
 
     //---------- CONTROL FUNCTIONS ---------------------------------------------------------------------------------------------------//
 
