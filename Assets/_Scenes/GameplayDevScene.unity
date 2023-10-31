@@ -5379,7 +5379,7 @@ PrefabInstance:
       objectReference: {fileID: 380630590}
     - target: {fileID: 483174352824684264, guid: 85e67e353362cc5408337a9b66a208ab, type: 3}
       propertyPath: moveSpeed
-      value: 10
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 483174352824684264, guid: 85e67e353362cc5408337a9b66a208ab, type: 3}
       propertyPath: shootForce
