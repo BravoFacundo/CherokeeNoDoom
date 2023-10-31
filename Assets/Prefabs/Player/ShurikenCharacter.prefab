@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2626066137410248361}
+  - component: {fileID: 483174352824684264}
   - component: {fileID: 2763959828827705115}
   - component: {fileID: 5992295698580456874}
   m_Layer: 8
@@ -33,6 +34,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6869673225470995913}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &483174352824684264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816282092020689722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9691cab7f5fc5ff479e4a6a76235885f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootForce: 0
+  shootChargeSpeed: 0
+  shootMaxCharge: 0
+  shootReloadTime: 0
+  isReloading: 0
+  chargeTime: 0
+  moveSpeed: 2
+  moveDuration: 2
+  rectTransform: {fileID: 0}
+  bowObject: {fileID: 0}
+  arrowPrefab: {fileID: 7695209710422396911, guid: 393acfd54552bfb4c9774148ee8de0d9, type: 3}
 --- !u!20 &2763959828827705115
 Camera:
   m_ObjectHideFlags: 0
@@ -414,7 +438,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7125302652978233456}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

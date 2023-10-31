@@ -1,10 +1,10 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class PlayerShoot : MonoBehaviour
-{
+public class PlayerShootttt : MonoBehaviour
+{   
+
     [Header("Configuration")]
     public float shootForce;
     private float shootForceBackup;
@@ -19,29 +19,17 @@ public class PlayerShoot : MonoBehaviour
     private bool isCharging;
     [SerializeField] private float chargeTime;
 
-    [Header("Bow Image")]
-    [SerializeField] float moveSpeed = 2.0f;
-    [SerializeField] float moveDuration = 2.0f;
-    [SerializeField] private RectTransform rectTransform;
-    private Vector3 initialPos;
-    private bool bowIsMoving = false;
-    private float moveTimer = 0.0f;
-
     [Header("References")]
     [SerializeField] private GameObject bowObject;
     private Camera cam;
 
-    
-
     [Header("Prefabs")]
     [SerializeField] private Rigidbody arrowPrefab;
+    [SerializeField] private Rigidbody arrowForkPrefab;
 
     void Start()
     {
         cam = Camera.main;
-        if (bowObject == null) bowObject = GameObject.Find("BowTemplate");
-        rectTransform = bowObject.GetComponent<RectTransform>();
-        initialPos = rectTransform.position;
 
         shootForceBackup = shootForce;
         isReloading = false;
@@ -52,26 +40,28 @@ public class PlayerShoot : MonoBehaviour
         if (Input.GetMouseButtonDown(2));
         if (Input.GetMouseButtonDown(1));
 
-
-        if (Input.GetMouseButtonDown(0))
-        {
+        if (Input.GetKeyDown(KeyCode.E))
+        //if (Input.GetMouseButtonDown(0))
+        {            
+            //print("Start Charging Shoot");
             chargeTime = 0;
-            moveTimer = 0.0f;
-            bowIsMoving = true;
+
         }
-        if (Input.GetMouseButton(0))
-        {
+        if (Input.GetKey(KeyCode.E))
+        //if (Input.GetMouseButton(0))
+        {            
             isCharging = true;
+            //bowAnimator.SetTrigger("Arrow_Charge");
             if (isCharging && !isReloading && chargeTime < shootMaxCharge)
             {
                 chargeTime += Time.deltaTime * shootChargeSpeed;
+                //bowAnimator.SetBool("Arrow_Charge", true);
             }
         }
-        if (Input.GetMouseButtonUp(0))
-        {
-            bowIsMoving = false;
-            rectTransform.position = initialPos;
 
+        if (Input.GetKeyUp(KeyCode.E))
+        //if (Input.GetMouseButtonUp(0))
+        {            
             if (chargeTime <= shootMaxCharge * 0.5)
             {
                 //print("No Shoot");
@@ -90,22 +80,6 @@ public class PlayerShoot : MonoBehaviour
                 StartCoroutine(nameof(ShootArrow), 2);
             }
         }
-
-        if (bowIsMoving)
-        {
-            if (moveTimer < moveDuration)
-            {
-                float distance = rectTransform.sizeDelta.y * 0.5f;
-                float step = moveSpeed * Time.deltaTime;
-                Vector3 targetPosition = initialPos - new Vector3(0, distance, 0);
-                rectTransform.position = Vector3.MoveTowards(rectTransform.position, targetPosition, step);
-                moveTimer += Time.deltaTime;
-            }
-            else
-            {
-                bowIsMoving = false;
-            }
-        }
     }
 
     IEnumerator ShootArrow(int shootDamage)
@@ -120,7 +94,7 @@ public class PlayerShoot : MonoBehaviour
 
         Rigidbody arrow = arrowPrefab;
         Vector3 spawnPosition = Vector3.zero;
-
+        
         //spawnPosition = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cam.nearClipPlane + .5f));
         spawnPosition = cam.transform.position;
 
@@ -132,4 +106,9 @@ public class PlayerShoot : MonoBehaviour
         shootForce = shootForceBackup;
         isReloading = false;
     }
+
 }
+
+
+
+    

@@ -41,13 +41,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
     [SerializeField] KeyCode sprintKey = KeyCode.LeftControl;
 
-    [Header("Self References")]
+    [Header("Local References")]
     public Transform storePlayerOrientation;
     [SerializeField] Transform groundCheck;
-    PhysicMaterial playerPhysicsMat;
+    private PhysicMaterial playerPhysicsMat;
     [HideInInspector] public Rigidbody rb;
     [HideInInspector] public Collider col;
     [HideInInspector] public Camera cam;
+
+    [Header("References")]
+    [HideInInspector] GameObject canvasManager;
 
     private void Awake()
     {

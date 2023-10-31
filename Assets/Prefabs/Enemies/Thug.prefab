@@ -398,7 +398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cef02a26ffff794e8866628a2f39c15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasDebugCollider: 1
+  hasDebugCollider: 0
   maxRotationX: 10
   dataTextureMaterial: {fileID: 2100000, guid: b01a305fda5ffc643b00204a5141bfff, type: 2}
   spriteCollider: {fileID: 7297329661574004999, guid: 7c668b872c0584443a51f99554bfb8b9, type: 3}
@@ -458,9 +458,9 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
-  sightRange: 14
+  sightRange: 100
   playerInSightRange: 0
-  attackRange: 1
+  attackRange: 0.2
   playerInAttackRange: 0
   timeBetweenAttacks: 0
   target: {fileID: 0}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using TMPro;
 
 public class Enemy : MonoBehaviour
 {
@@ -43,18 +44,12 @@ public class Enemy : MonoBehaviour
 
         if (!enemyDied && alreadyAttack == false)
         {
-            if (!playerInSightRange && !playerInAttackRange)
+            if (playerInSightRange)
             {
-                WaitForPlayer();
+                if (!playerInAttackRange) ChasePlayer();
+                else AttackPlayer();
             }
-            else if (playerInSightRange && !playerInAttackRange)
-            {
-                ChasePlayer();
-            }
-            else if (playerInSightRange && playerInAttackRange)
-            {
-                AttackPlayer();
-            }
+            else if (!playerInAttackRange) WaitForPlayer();
         }
 
         if (Input.GetKeyDown(KeyCode.F)) EnemyDie();
@@ -80,7 +75,9 @@ public class Enemy : MonoBehaviour
         alreadyAttack = true;
 
         //Hardcoded
-        GameObject.Find("Death").GetComponent<Image>().enabled = true;
+        var deathScreen = GameObject.Find("DeathScreen").transform;
+        deathScreen.GetComponent<Image>().enabled = true;
+        deathScreen.GetChild(0).GetComponent<TMP_Text>().enabled = true;
     }
     public void EnemyDie()
     {

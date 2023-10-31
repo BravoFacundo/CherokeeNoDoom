@@ -15,14 +15,14 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(nameof(Shooting));
+        StartCoroutine(nameof(InstaciateEnemy));
     }
 
-    IEnumerator Shooting()
+    IEnumerator InstaciateEnemy()
     {
-        Instantiate(enemyPrefab);
+        Instantiate(enemyPrefab, spawnPos.position, Quaternion.identity);
 
         yield return new WaitForSeconds(spawnDelay);
-        StartCoroutine(nameof(Shooting));
+        StartCoroutine(nameof(InstaciateEnemy));
     }
 }
