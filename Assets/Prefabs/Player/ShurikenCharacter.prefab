@@ -56,7 +56,7 @@ MonoBehaviour:
   moveDuration: 2
   rectTransform: {fileID: 0}
   bowObject: {fileID: 0}
-  arrowPrefab: {fileID: 7695209710422396911, guid: 393acfd54552bfb4c9774148ee8de0d9, type: 3}
+  projectilePrefab: {fileID: 7695209710422396911, guid: 393acfd54552bfb4c9774148ee8de0d9, type: 3}
 --- !u!20 &2763959828827705115
 Camera:
   m_ObjectHideFlags: 0

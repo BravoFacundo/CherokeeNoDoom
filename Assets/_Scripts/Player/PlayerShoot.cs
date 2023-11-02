@@ -6,9 +6,10 @@ using UnityEngine.UI;
 public class PlayerShoot : MonoBehaviour
 {
     [Header("Configuration")]
+    public ForceMode forceMode;
+    
     public float shootForce;
     private float shootForceBackup;
-    private ForceMode forceMode;
 
     [SerializeField] private float shootChargeSpeed;
     [SerializeField] private float shootMaxCharge;
@@ -27,14 +28,12 @@ public class PlayerShoot : MonoBehaviour
     private bool bowIsMoving = false;
     private float moveTimer = 0.0f;
 
+    [Header("Prefabs")]
+    public Rigidbody projectilePrefab;
+
     [Header("References")]
     [SerializeField] private GameObject bowObject;
     private Camera cam;
-
-    
-
-    [Header("Prefabs")]
-    [SerializeField] private Rigidbody arrowPrefab;
 
     void Start()
     {
@@ -81,13 +80,13 @@ public class PlayerShoot : MonoBehaviour
             if (chargeTime >= shootMaxCharge * 0.5 && chargeTime <= shootMaxCharge * 0.75)
             {
                 //print("Weak Shoot");
-                StartCoroutine(nameof(ShootArrow), 1);
+                StartCoroutine(ShootProjectile(projectilePrefab, shootForce/2));
             }
             else
             if (chargeTime >= shootMaxCharge * 0.75 && chargeTime <= shootMaxCharge + 1)
             {
                 //print("Hard Shoot");
-                StartCoroutine(nameof(ShootArrow), 2);
+                StartCoroutine(ShootProjectile(projectilePrefab, shootForce));
             }
         }
 
@@ -108,25 +107,18 @@ public class PlayerShoot : MonoBehaviour
         }
     }
 
-    IEnumerator ShootArrow(int shootDamage)
+    IEnumerator ShootProjectile(Rigidbody _projectilePrefab, float _shootForce)
     {
         isCharging = false;
         chargeTime = 0;
         isReloading = true;
 
-        //Shoot Direction
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        Vector3 spawnPosition = cam.transform.position;
+        Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
         Quaternion rotation = Quaternion.LookRotation(ray.direction);
 
-        Rigidbody arrow = arrowPrefab;
-        Vector3 spawnPosition = Vector3.zero;
-
-        //spawnPosition = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cam.nearClipPlane + .5f));
-        spawnPosition = cam.transform.position;
-
-        Rigidbody newArrow = Instantiate(arrow, spawnPosition, rotation) as Rigidbody;
-        newArrow.AddForce(ray.direction * shootForce, ForceMode.VelocityChange);
-        //newArrow.transform.Rotate(0, 0, Random.Range(0, 180), Space.Self);
+        Rigidbody newProjectile = Instantiate(_projectilePrefab, spawnPosition, rotation);
+        newProjectile.AddForce(ray.direction * _shootForce, forceMode);
 
         yield return new WaitForSeconds(shootReloadTime);
         shootForce = shootForceBackup;
