@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6704876790635455492}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Camera Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1419314437612035726}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pivot Positions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,6 +104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3822271739711050796}
+  - component: {fileID: 3891288129637320656}
   - component: {fileID: 3850956203954360192}
   - component: {fileID: 5211624553498876281}
   m_Layer: 8
@@ -128,6 +129,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1567965588695161406}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3891288129637320656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8490430685842834135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba9494d8d3fc9834dac112fc1382862d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceMode: 2
+  isCharging: 0
+  isWaiting: 0
+  isReloading: 0
+  projectilePrefab: {fileID: 7695209710422396911, guid: 393acfd54552bfb4c9774148ee8de0d9, type: 3}
+  weaponObject: {fileID: 0}
+  shootForce: 45
+  shootChargeSpeed: 2
+  shootMaxCharge: 2
+  shootReloadTime: 1
+  chargeTime: 0
+  moveSpeed: 35
 --- !u!20 &3850956203954360192
 Camera:
   m_ObjectHideFlags: 0
@@ -283,7 +308,7 @@ GameObject:
   - component: {fileID: 6933165372714164195}
   - component: {fileID: 1296534773614830216}
   - component: {fileID: 18659543886760109}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BowCharacter
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -347,6 +372,9 @@ MonoBehaviour:
   col: {fileID: 0}
   cam: {fileID: 0}
   dashKey: 304
+  dashForce: 15
+  dashFOVChange: 120
+  dashFOVReturnTime: 0.5
 --- !u!114 &6933165372714164195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -415,7 +443,7 @@ GameObject:
   - component: {fileID: 5116230824072618473}
   - component: {fileID: 7472735902980378399}
   - component: {fileID: 7399719277460336556}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -520,7 +548,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1567965588695161406}
   - component: {fileID: 4462612994787127030}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Camera Holder
   m_TagString: CameraHolder
   m_Icon: {fileID: 0}
