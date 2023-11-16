@@ -37,9 +37,8 @@ public class PlayerShoot : MonoBehaviour
         isCharging = false;
         isReloading = true;
 
-        //Cam.transform.forward
         Vector3 spawnPosition = cam.transform.position;
-        Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+        Ray ray = new(cam.transform.position, cam.transform.forward);
         Quaternion rotation = Quaternion.LookRotation(ray.direction);
 
         Rigidbody newProjectile = Instantiate(projectilePrefab, spawnPosition, rotation);
