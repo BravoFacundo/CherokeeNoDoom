@@ -32,7 +32,7 @@ public class PlayerShoot : MonoBehaviour
 
     }
 
-    public IEnumerator ShootProjectile(float _shootForce, float _shootReloadTime)
+    public IEnumerator ShootProjectile(float _shootForce, float _shootReloadTime, float _shootDamage)
     {
         isCharging = false;
         isReloading = true;
@@ -43,6 +43,7 @@ public class PlayerShoot : MonoBehaviour
 
         Rigidbody newProjectile = Instantiate(projectilePrefab, spawnPosition, rotation);
         newProjectile.AddForce(ray.direction * _shootForce, forceMode);
+        newProjectile.GetComponent<ProjectileBehaviour>().shootDamage = _shootDamage;
 
         yield return new WaitForSeconds(_shootReloadTime);
         isReloading = false;

@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewRaycastTest : MonoBehaviour
+public class ProjectileBehaviour : MonoBehaviour
 {
     [Header("Values")]
     public float initialSpeed = 110f;
     public float gravity = -9.81f;
     public float checkDistance = 1f;
+    public float shootDamage;
     
     [Header("Data")]
     [SerializeField] List<Collider> ignoredColliders = new();
@@ -48,7 +49,7 @@ public class NewRaycastTest : MonoBehaviour
                 Vector2 textureCoord = hit.textureCoord;
 
                 Texture2D animTexture = hitData.spriteRenderer.sprite.texture;
-                Texture2D dataTexture = hitData.meshRenderer.material.mainTexture as Texture2D;
+                Texture2D dataTexture = hitData.dataTexture;
 
                 int uvX = Mathf.FloorToInt(textureCoord.x * animTexture.width);
                 int uvY = Mathf.FloorToInt(textureCoord.y * animTexture.height);
@@ -62,11 +63,10 @@ public class NewRaycastTest : MonoBehaviour
                     }
                     ignoredColliders.Clear();
                     
-                    //colliderObj.SetActive(true);
                     transform.position = hit.point;
                     rb.isKinematic = true;
                     Destroy(gameObject);
-                    hitData.enemyScript.EnemyDie();
+                    hitData.enemyScript.EnemyDamage(shootDamage);
 
                     break; // Salir del bucle al encontrar un hit válido
                 }

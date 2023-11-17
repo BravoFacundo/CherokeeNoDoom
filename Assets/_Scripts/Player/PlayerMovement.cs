@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
+    public bool canMove = true;
     public float moveSpeed = 6f; //Debug
     public float movementMultiplier = 10f;
     public float airMovementMultiplier = 0.3f;
@@ -69,9 +70,12 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
         slopeDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
 
-        MoveInput();
-        SprintInput();
-        JumpInput();
+        if (canMove)
+        {
+            MoveInput();
+            SprintInput();
+            JumpInput();
+        }
 
         DebugInput();
         
@@ -204,7 +208,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            Application.LoadLevel(Application.loadedLevel);
+            //Application.LoadLevel(Application.loadedLevel);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }

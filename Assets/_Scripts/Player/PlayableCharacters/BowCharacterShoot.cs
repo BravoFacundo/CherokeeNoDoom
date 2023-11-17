@@ -7,6 +7,7 @@ public class BowCharacterShoot : PlayerShoot
     [Header("Bow Configuration")]
     [SerializeField] float shootForce;
     private float currentShootForce;
+    [SerializeField] float shootDamage = 100f;
     [SerializeField] float shootChargeSpeed;
     [SerializeField] float shootMaxCharge;
     [SerializeField] float shootReloadTime;
@@ -65,13 +66,13 @@ public class BowCharacterShoot : PlayerShoot
             else
             if (chargeTime >= shootMaxCharge * 0.5 && chargeTime <= shootMaxCharge * 0.75) //Weak Shoot
             {              
-                StartCoroutine(ShootProjectile(shootForce * 0.5f, shootReloadTime));
+                StartCoroutine(ShootProjectile(shootForce * 0.5f, shootReloadTime, shootDamage/2));
                 chargeTime = 0;
             }
             else
             if (chargeTime >= shootMaxCharge * 0.75 && chargeTime <= shootMaxCharge + 1) //Hard Shoot
             {
-                StartCoroutine(ShootProjectile(shootForce, shootReloadTime));
+                StartCoroutine(ShootProjectile(shootForce, shootReloadTime, shootDamage));
                 chargeTime = 0;
             }
         }

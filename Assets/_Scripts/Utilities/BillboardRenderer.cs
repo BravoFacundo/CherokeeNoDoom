@@ -10,6 +10,7 @@ public class BillboardRenderer : MonoBehaviour
     [Header("Configuration")]
     [SerializeField] float maxRotationX = 0f;
     [SerializeField] Material dataTextureMaterial;
+    public Texture2D dataTexture;
 
     [Header("Prefabs")]
     [SerializeField] GameObject spriteCollider;

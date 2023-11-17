@@ -148,6 +148,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 7695209710422396911, guid: 393acfd54552bfb4c9774148ee8de0d9, type: 3}
   weaponObject: {fileID: 0}
   shootForce: 45
+  shootDamage: 100
   shootChargeSpeed: 2
   shootMaxCharge: 2
   shootReloadTime: 1
@@ -373,7 +374,7 @@ MonoBehaviour:
   cam: {fileID: 0}
   dashKey: 304
   dashForce: 15
-  dashFOVChange: 120
+  dashFOVChange: 100
   dashFOVReturnTime: 0.5
 --- !u!114 &6933165372714164195
 MonoBehaviour:
