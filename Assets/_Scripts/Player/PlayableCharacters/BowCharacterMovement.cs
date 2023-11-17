@@ -52,6 +52,7 @@ public class BowCharacterMovement : PlayerMovement
         dashIsOnCD = true;
         yield return new WaitForSeconds(cooldown);
         dashIsOnCD = false;
+        readyToDash = false;
     }
 
 }
