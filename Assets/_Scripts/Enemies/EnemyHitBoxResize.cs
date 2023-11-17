@@ -36,7 +36,6 @@ public class EnemyHitBoxResize : MonoBehaviour
     {
         RescaleSpriteCollider();
     }
-
     void RescaleSpriteCollider()
     {
         Vector3 spriteSize = spriteRenderer.sprite.bounds.size;

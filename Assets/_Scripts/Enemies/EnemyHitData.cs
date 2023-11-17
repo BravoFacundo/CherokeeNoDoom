@@ -9,6 +9,7 @@ public class EnemyHitData : MonoBehaviour
     public Enemy enemyScript;
     public SpriteRenderer spriteRenderer;
     public MeshRenderer meshRenderer;
+    public Texture2D dataTexture;
 
     void Start()
     {
@@ -16,5 +17,6 @@ public class EnemyHitData : MonoBehaviour
         if (spriteRenderer == null) spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         if (meshRenderer == null) meshRenderer.GetComponent<MeshRenderer>();
         if (enemyScript == null) enemyScript.GetComponent<Enemy>();
+        if (dataTexture == null) dataTexture = enemyTransform.GetComponentInChildren<BillboardRenderer>().dataTexture;
     }
 }

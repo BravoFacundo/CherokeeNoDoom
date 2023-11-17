@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2626066137410248361}
-  - component: {fileID: 483174352824684264}
+  - component: {fileID: 1766487166947758770}
   - component: {fileID: 2763959828827705115}
   - component: {fileID: 5992295698580456874}
   m_Layer: 8
@@ -34,7 +34,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6869673225470995913}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &483174352824684264
+--- !u!114 &1766487166947758770
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,20 +43,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 816282092020689722}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9691cab7f5fc5ff479e4a6a76235885f, type: 3}
+  m_Script: {fileID: 11500000, guid: ba9494d8d3fc9834dac112fc1382862d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootForce: 0
-  shootChargeSpeed: 0
-  shootMaxCharge: 0
-  shootReloadTime: 0
+  forceMode: 2
+  isCharging: 0
+  isWaiting: 0
   isReloading: 0
+  projectilePrefab: {fileID: 7695209710422396911, guid: 393acfd54552bfb4c9774148ee8de0d9, type: 3}
+  weaponObject: {fileID: 0}
+  shootForce: 45
+  shootChargeSpeed: 2
+  shootMaxCharge: 2
+  shootReloadTime: 1
   chargeTime: 0
-  moveSpeed: 2
-  moveDuration: 2
-  rectTransform: {fileID: 0}
-  bowObject: {fileID: 0}
-  arrowPrefab: {fileID: 7695209710422396911, guid: 393acfd54552bfb4c9774148ee8de0d9, type: 3}
+  moveSpeed: 35
 --- !u!20 &2763959828827705115
 Camera:
   m_ObjectHideFlags: 0
@@ -209,7 +210,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6869673225470995913}
   - component: {fileID: 3652049743697825524}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Camera Holder
   m_TagString: CameraHolder
   m_Icon: {fileID: 0}
@@ -224,14 +225,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2273557495695426303}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: -0.00000032782552}
   m_LocalPosition: {x: 0, y: 0.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2626066137410248361}
   m_Father: {fileID: 4845765608051370672}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!114 &3652049743697825524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,7 +259,7 @@ GameObject:
   - component: {fileID: 1402105023922949795}
   - component: {fileID: 7541665046069294077}
   - component: {fileID: 6630457175200760414}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ShurikenCharacter
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -323,7 +324,7 @@ MonoBehaviour:
   cam: {fileID: 0}
   dashKey: 304
   dashForce: 45
-  dashFOVChange: 135
+  dashFOVChange: 100
   dashFOVReturnTime: 0.5
 --- !u!114 &1402105023922949795
 MonoBehaviour:
@@ -390,7 +391,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 884094105155340921}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pivot Positions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -423,7 +424,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1017094571886294767}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Camera Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -457,7 +458,7 @@ GameObject:
   - component: {fileID: 89357683229019518}
   - component: {fileID: 5768847214938334895}
   - component: {fileID: 6558341682412512672}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
