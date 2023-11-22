@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7718677083107150144}
   - component: {fileID: 8748702474078528497}
   - component: {fileID: 4031760491230116281}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Custom Fence Type6 Big
   m_TagString: Untagged
   m_Icon: {fileID: 0}

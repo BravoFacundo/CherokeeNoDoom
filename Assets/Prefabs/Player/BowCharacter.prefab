@@ -347,6 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1017e25e28cf4dc4e8414ddf8ba338d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canMove: 1
   moveSpeed: 6
   movementMultiplier: 10
   airMovementMultiplier: 0.3
@@ -374,6 +375,7 @@ MonoBehaviour:
   cam: {fileID: 0}
   dashKey: 304
   dashForce: 15
+  dashCD: 3
   dashFOVChange: 100
   dashFOVReturnTime: 0.5
 --- !u!114 &6933165372714164195
