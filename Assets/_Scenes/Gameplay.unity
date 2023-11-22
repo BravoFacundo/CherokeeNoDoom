@@ -1280,6 +1280,14 @@ PrefabInstance:
       propertyPath: weaponObject
       value: 
       objectReference: {fileID: 380630590}
+    - target: {fileID: 3891288129637320656, guid: 645ceda9cc38b324dab15b2025718f44, type: 3}
+      propertyPath: shootMaxCharge
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891288129637320656, guid: 645ceda9cc38b324dab15b2025718f44, type: 3}
+      propertyPath: shootChargeSpeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4759983575663878899, guid: 645ceda9cc38b324dab15b2025718f44, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.17999983

@@ -17,6 +17,7 @@ public class PlayerShoot : MonoBehaviour
     public Rigidbody projectilePrefab;
 
     [Header("References")]
+    public PlayerMovement playerMovement;
     public GameObject weaponObject;
     private Camera cam;
 

@@ -5,16 +5,15 @@ using UnityEngine;
 public class BowCharacterShoot : PlayerShoot
 {
     [Header("Bow Configuration")]
-    [SerializeField] float shootForce;
-    private float currentShootForce;
-    [SerializeField] float shootDamage = 100f;
-    [SerializeField] float shootChargeSpeed;
-    [SerializeField] float shootMaxCharge;
-    [SerializeField] float shootReloadTime;
     [SerializeField] float chargeTime;
+    [SerializeField] float shootChargeTime; float shootChargeSpeed;
+    [SerializeField] Vector2 shootForceRange; //Original is 25 - 110 m/s
+    [SerializeField] Vector2 shootDamageRange;
+    [SerializeField] float shootReloadTime;
+    [SerializeField] float aimSpeedReduction;
 
     [Header("Bow Feedback")]
-    [SerializeField] float moveSpeed = 10f;
+    [SerializeField] float moveSpeed;
     private float moveDuration = 2.0f;
     private RectTransform rectTransform;
     private Vector3 initialPos;
@@ -24,25 +23,21 @@ public class BowCharacterShoot : PlayerShoot
     protected override void Start()
     {
         base.Start();
+        
+        shootChargeSpeed = 1 / shootChargeTime;
 
         rectTransform = weaponObject.GetComponent<RectTransform>();
-        initialPos = rectTransform.position;
-        moveDuration = shootMaxCharge;
+        initialPos = rectTransform.position;        
+        moveDuration = shootChargeTime;
     }
 
     protected override void Update()
     {
         base.Update();
 
-        NewShootInput();
-        //ShootInput();
+        ShootInput();
         
         Animation();
-    }
-
-    private void NewShootInput()
-    {
-
     }
 
     private void ShootInput()
@@ -56,9 +51,9 @@ public class BowCharacterShoot : PlayerShoot
         if (Input.GetMouseButton(0))
         {
             isCharging = true;
-            if (isCharging && !isReloading && chargeTime < shootMaxCharge)
+            if (isCharging && !isReloading)
             {
-                chargeTime += Time.deltaTime * shootChargeSpeed;
+                if (chargeTime <= 1) chargeTime += Time.deltaTime * shootChargeSpeed;
             }
         }
         if (Input.GetMouseButtonUp(0))
@@ -66,22 +61,15 @@ public class BowCharacterShoot : PlayerShoot
             bowIsMoving = false;
             rectTransform.position = initialPos;
 
-            if (chargeTime <= shootMaxCharge * 0.5) //No Shoot
+            if (!isReloading)
             {
+                var newShootForce = Mathf.Lerp(shootForceRange.x, shootForceRange.y, chargeTime);
+                var newShootDamage = Mathf.Lerp(shootDamageRange.x, shootDamageRange.y, chargeTime);
+                StartCoroutine(ShootProjectile(newShootForce, shootReloadTime, newShootDamage));
+                print("Shoot Force: " + newShootForce + " | Shoot Damage: " + newShootDamage);
+
                 chargeTime = 0;
-            }
-            else
-            if (chargeTime >= shootMaxCharge * 0.5 && chargeTime <= shootMaxCharge * 0.75) //Weak Shoot
-            {              
-                StartCoroutine(ShootProjectile(shootForce * 0.5f, shootReloadTime, shootDamage/2));
-                chargeTime = 0;
-            }
-            else
-            if (chargeTime >= shootMaxCharge * 0.75 && chargeTime <= shootMaxCharge + 1) //Hard Shoot
-            {
-                StartCoroutine(ShootProjectile(shootForce, shootReloadTime, shootDamage));
-                chargeTime = 0;
-            }
+            }          
         }
     }
 

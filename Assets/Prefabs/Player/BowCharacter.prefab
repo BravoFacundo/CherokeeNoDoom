@@ -146,13 +146,14 @@ MonoBehaviour:
   isWaiting: 0
   isReloading: 0
   projectilePrefab: {fileID: 7695209710422396911, guid: 393acfd54552bfb4c9774148ee8de0d9, type: 3}
+  playerMovement: {fileID: 7451202812506219522}
   weaponObject: {fileID: 0}
-  shootForce: 45
-  shootDamage: 100
-  shootChargeSpeed: 2
-  shootMaxCharge: 2
-  shootReloadTime: 1
   chargeTime: 0
+  shootChargeTime: 1
+  shootForceRange: {x: 35, y: 75}
+  shootDamageRange: {x: 27.2, y: 120}
+  shootReloadTime: 0.5
+  aimSpeedReduction: 30
   moveSpeed: 35
 --- !u!20 &3850956203954360192
 Camera:
