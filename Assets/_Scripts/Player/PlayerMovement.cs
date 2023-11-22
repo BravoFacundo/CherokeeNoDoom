@@ -66,8 +66,7 @@ public class PlayerMovement : MonoBehaviour
         playerPhysicsMat = GetComponentInChildren<Collider>().material;
     }
     protected virtual void Update()
-    {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+    {        
         slopeDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
 
         if (canMove)
@@ -122,6 +121,8 @@ public class PlayerMovement : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
         PlayerMove();
         PlayerJump();
     }

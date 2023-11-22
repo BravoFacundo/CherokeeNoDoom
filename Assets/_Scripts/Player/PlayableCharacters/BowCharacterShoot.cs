@@ -34,8 +34,15 @@ public class BowCharacterShoot : PlayerShoot
     {
         base.Update();
 
-        ShootInput();
+        NewShootInput();
+        //ShootInput();
+        
         Animation();
+    }
+
+    private void NewShootInput()
+    {
+
     }
 
     private void ShootInput()

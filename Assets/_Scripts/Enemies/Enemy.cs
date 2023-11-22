@@ -86,10 +86,12 @@ public class Enemy : MonoBehaviour
         agent.SetDestination(transform.position);
         alreadyAttack = true;
 
+        //Hardcoded
         var deathScreen = GameObject.Find("DeathScreen").transform;
         deathScreen.GetComponent<Image>().enabled = true;
         deathScreen.GetChild(0).GetComponent<TMP_Text>().enabled = true;
         target.GetComponent<PlayerMovement>().canMove = false;
+        target.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
     }
     public void EnemyDie()
     {
