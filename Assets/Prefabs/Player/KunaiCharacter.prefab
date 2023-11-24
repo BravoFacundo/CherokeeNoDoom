@@ -125,89 +125,6 @@ Transform:
   - {fileID: 3445435303665863672}
   m_Father: {fileID: 2613482353265584539}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &3014769307494401008
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1087329021678201456}
-  - component: {fileID: 7364558058827619964}
-  m_Layer: 8
-  m_Name: MapCamera
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1087329021678201456
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3014769307494401008}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.000000410931, y: 0.7071078, z: -0.7071058, w: 0.00000041093222}
-  m_LocalPosition: {x: 0, y: 20, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2613482353265584539}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!20 &7364558058827619964
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3014769307494401008}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_Iso: 200
-  m_ShutterSpeed: 0.005
-  m_Aperture: 16
-  m_FocusDistance: 10
-  m_FocalLength: 50
-  m_BladeCount: 5
-  m_Curvature: {x: 2, y: 11}
-  m_BarrelClipping: 0.25
-  m_Anamorphism: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 70
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 512
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: 0186f8c9b2d069a47a8eb326d06350dd, type: 2}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
 --- !u!1 &4131218157315282318
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,7 +290,6 @@ GameObject:
   - component: {fileID: 5462906391742639683}
   - component: {fileID: 7701754722182182059}
   - component: {fileID: 8134271580105679182}
-  - component: {fileID: 6723898717441433391}
   m_Layer: 0
   m_Name: KunaiCharacter
   m_TagString: Player
@@ -396,7 +312,6 @@ Transform:
   m_Children:
   - {fileID: 3023870429809124436}
   - {fileID: 7601846493157311340}
-  - {fileID: 1087329021678201456}
   - {fileID: 5043045115061228269}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -412,6 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee720d2de4659e4cb9d943ef9452ff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canMove: 1
   moveSpeed: 6
   movementMultiplier: 10
   airMovementMultiplier: 0.3
@@ -483,20 +399,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6723898717441433391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7605428672455382628}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1573a02d204f20348992ac1009893d8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mapPointColor: {r: 0.06666667, g: 0.77254903, b: 0, a: 1}
-  mapPointPrefab: {fileID: 4928080634373236674, guid: e5b63a07ff40b094b9f423981beb4761, type: 3}
 --- !u!1 &7940974378120369283
 GameObject:
   m_ObjectHideFlags: 0

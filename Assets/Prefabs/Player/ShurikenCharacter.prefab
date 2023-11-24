@@ -51,12 +51,14 @@ MonoBehaviour:
   isWaiting: 0
   isReloading: 0
   projectilePrefab: {fileID: 7695209710422396911, guid: 393acfd54552bfb4c9774148ee8de0d9, type: 3}
+  playerMovement: {fileID: 0}
   weaponObject: {fileID: 0}
-  shootForce: 45
-  shootChargeSpeed: 2
-  shootMaxCharge: 2
-  shootReloadTime: 1
   chargeTime: 0
+  shootChargeTime: 0
+  shootForceRange: {x: 0, y: 0}
+  shootDamageRange: {x: 0, y: 0}
+  shootReloadTime: 1
+  aimSpeedReduction: 0
   moveSpeed: 35
 --- !u!20 &2763959828827705115
 Camera:
@@ -117,89 +119,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 816282092020689722}
   m_Enabled: 1
---- !u!1 &876619329513056107
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3362210252541143043}
-  - component: {fileID: 7860032103170651643}
-  m_Layer: 8
-  m_Name: MapCamera
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3362210252541143043
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 876619329513056107}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.000000410931, y: 0.7071078, z: -0.7071058, w: 0.00000041093222}
-  m_LocalPosition: {x: 0, y: 20, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4845765608051370672}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!20 &7860032103170651643
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 876619329513056107}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_Iso: 200
-  m_ShutterSpeed: 0.005
-  m_Aperture: 16
-  m_FocusDistance: 10
-  m_FocalLength: 50
-  m_BladeCount: 5
-  m_Curvature: {x: 2, y: 11}
-  m_BarrelClipping: 0.25
-  m_Anamorphism: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 70
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 512
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: 0186f8c9b2d069a47a8eb326d06350dd, type: 2}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
 --- !u!1 &2273557495695426303
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,7 +177,6 @@ GameObject:
   - component: {fileID: 4968462960973593108}
   - component: {fileID: 1402105023922949795}
   - component: {fileID: 7541665046069294077}
-  - component: {fileID: 6630457175200760414}
   m_Layer: 8
   m_Name: ShurikenCharacter
   m_TagString: Player
@@ -281,7 +199,6 @@ Transform:
   m_Children:
   - {fileID: 7916050963361944447}
   - {fileID: 6869673225470995913}
-  - {fileID: 3362210252541143043}
   - {fileID: 884094105155340921}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -297,6 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a53c1a3795a06e4a98c2b727bcdfbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canMove: 1
   moveSpeed: 6
   movementMultiplier: 10
   airMovementMultiplier: 0.3
@@ -368,20 +286,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6630457175200760414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2836418256989014940}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1573a02d204f20348992ac1009893d8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mapPointColor: {r: 0.06666667, g: 0.77254903, b: 0, a: 1}
-  mapPointPrefab: {fileID: 4928080634373236674, guid: e5b63a07ff40b094b9f423981beb4761, type: 3}
 --- !u!1 &5847353702650898209
 GameObject:
   m_ObjectHideFlags: 0

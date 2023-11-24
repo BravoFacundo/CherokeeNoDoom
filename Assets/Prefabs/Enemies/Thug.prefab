@@ -417,7 +417,6 @@ GameObject:
   - component: {fileID: 7528535389840667926}
   - component: {fileID: 8249736334316574991}
   - component: {fileID: 904650588772135464}
-  - component: {fileID: 4825185984686572689}
   m_Layer: 7
   m_Name: Thug
   m_TagString: Enemy
@@ -492,17 +491,3 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &4825185984686572689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8291967232731701621}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1573a02d204f20348992ac1009893d8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mapPointColor: {r: 0.94509804, g: 0.17254902, b: 0.17254902, a: 1}
-  mapPointPrefab: {fileID: 4928080634373236674, guid: e5b63a07ff40b094b9f423981beb4761, type: 3}

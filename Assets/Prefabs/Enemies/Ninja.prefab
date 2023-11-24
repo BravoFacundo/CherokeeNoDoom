@@ -49,6 +49,7 @@ MonoBehaviour:
   hasDebugCollider: 1
   maxRotationX: 10
   dataTextureMaterial: {fileID: 2100000, guid: b01a305fda5ffc643b00204a5141bfff, type: 2}
+  dataTexture: {fileID: 0}
   spriteCollider: {fileID: 7297329661574004999, guid: 7c668b872c0584443a51f99554bfb8b9, type: 3}
   target: {fileID: 0}
   spriteColliderRenderer: {fileID: 6304739756179533030}
@@ -63,7 +64,6 @@ GameObject:
   - component: {fileID: 3276811119814304396}
   - component: {fileID: 4546968571084600259}
   - component: {fileID: 8491071252282823908}
-  - component: {fileID: 1527358984271658857}
   m_Layer: 7
   m_Name: Ninja
   m_TagString: Enemy
@@ -100,17 +100,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc3b758c42016ef4b8fa83de32100119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
+  speed: 0
+  sightRange: 12
+  playerInSightRange: 0
+  attackRange: 0.5
+  playerInAttackRange: 0
+  timeBetweenAttacks: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
-  sightRange: 12
-  playerInSightRange: 0
-  attackRange: 0.5
-  playerInAttackRange: 0
-  timeBetweenAttacks: 0
+  agent: {fileID: 0}
+  enemyAnimator: {fileID: 0}
   target: {fileID: 0}
 --- !u!195 &8491071252282823908
 NavMeshAgent:
@@ -134,20 +138,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1527358984271658857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3491676884607587049}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1573a02d204f20348992ac1009893d8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mapPointColor: {r: 0.10588236, g: 0.09411766, b: 0.3019608, a: 1}
-  mapPointPrefab: {fileID: 4928080634373236674, guid: e5b63a07ff40b094b9f423981beb4761, type: 3}
 --- !u!1 &4967699966928441809
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,8 +273,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyTransform: {fileID: 3276811119814304396}
+  enemyScript: {fileID: 0}
   spriteRenderer: {fileID: 1108111501831874308}
   meshRenderer: {fileID: 6304739756179533030}
+  dataTexture: {fileID: 0}
 --- !u!1 &5836056226234856833
 GameObject:
   m_ObjectHideFlags: 0
