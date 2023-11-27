@@ -55,6 +55,8 @@ public class ProjectileBehaviour : MonoBehaviour
                 int uvY = Mathf.FloorToInt(textureCoord.y * animTexture.height);
 
                 Color hitPixelColor = animTexture.GetPixel(uvX, uvY);
+                Color dataPixelColor = dataTexture.GetPixel(uvX, uvY);
+
                 if (hitPixelColor.a > GameConstants.ALPHA_THRESHOLD)
                 {
                     foreach (Collider ignoredCollider in ignoredColliders)
@@ -66,7 +68,10 @@ public class ProjectileBehaviour : MonoBehaviour
                     transform.position = hit.point;
                     rb.isKinematic = true;
                     Destroy(gameObject);
-                    hitData.enemyScript.EnemyDamage(shootDamage);
+
+                    if (dataPixelColor.a > GameConstants.ALPHA_THRESHOLD)
+                        hitData.enemyScript.EnemyDamage(shootDamage * 2);
+                    else hitData.enemyScript.EnemyDamage(shootDamage);
 
                     break; // Salir del bucle al encontrar un hit válido
                 }

@@ -49,7 +49,6 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         //if (Input.GetKeyDown(KeyCode.F)) EnemyDie();
-        if (health <= 0 && !enemyDied) EnemyDie();
 
         if (!enemyDied && alreadyAttack == false)
         {
@@ -105,7 +104,8 @@ public class Enemy : MonoBehaviour
     public void EnemyDamage(float damage)
     {
         health -= damage;
-        StartCoroutine(nameof(EnemyHurt));
+        if (health <= 0 && !enemyDied) EnemyDie();
+        else StartCoroutine(nameof(EnemyHurt));
     }
     private IEnumerator EnemyHurt()
     {

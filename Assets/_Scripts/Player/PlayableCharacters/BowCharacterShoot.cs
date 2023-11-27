@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class BowCharacterShoot : PlayerShoot
 {
@@ -11,6 +12,9 @@ public class BowCharacterShoot : PlayerShoot
     [SerializeField] Vector2 shootDamageRange;
     [SerializeField] float shootReloadTime;
     [SerializeField] float aimSpeedReduction;
+
+    [Header("Bow Animation")]
+    [SerializeField] Animator animator;
 
     [Header("Bow Feedback")]
     [SerializeField] float moveSpeed;
@@ -45,8 +49,10 @@ public class BowCharacterShoot : PlayerShoot
         if (Input.GetMouseButtonDown(0))
         {
             chargeTime = 0;
-            moveTimer = 0.0f;
-            bowIsMoving = true;
+            animator.SetBool("IsLoading", true);
+
+            //moveTimer = 0.0f;
+            //bowIsMoving = true;
         }
         if (Input.GetMouseButton(0))
         {
@@ -58,19 +64,21 @@ public class BowCharacterShoot : PlayerShoot
         }
         if (Input.GetMouseButtonUp(0))
         {
-            bowIsMoving = false;
-            rectTransform.position = initialPos;
+            //bowIsMoving = false;
+            //rectTransform.position = initialPos;
 
             if (!isReloading)
             {
                 var newShootForce = Mathf.Lerp(shootForceRange.x, shootForceRange.y, chargeTime);
                 var newShootDamage = Mathf.Lerp(shootDamageRange.x, shootDamageRange.y, chargeTime);
                 StartCoroutine(ShootProjectile(newShootForce, shootReloadTime, newShootDamage));
-                print("Shoot Force: " + newShootForce + " | Shoot Damage: " + newShootDamage);
+                //print("Shoot Force: " + newShootForce + " | Shoot Damage: " + newShootDamage);
 
                 chargeTime = 0;
+                animator.SetBool("IsLoading", false);
             }          
         }
+
     }
 
     private void Animation()

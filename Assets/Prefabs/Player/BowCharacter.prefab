@@ -154,6 +154,7 @@ MonoBehaviour:
   shootDamageRange: {x: 27.2, y: 120}
   shootReloadTime: 0.5
   aimSpeedReduction: 30
+  animator: {fileID: 0}
   moveSpeed: 35
 --- !u!20 &3850956203954360192
 Camera:
@@ -272,7 +273,7 @@ MonoBehaviour:
   jumpForce: 25
   fallForce: 20
   walkSpeed: 5
-  sprintSpeed: 10
+  sprintSpeed: 5
   acceleration: 10
   groundDrag: 6
   airDrag: 2
@@ -284,6 +285,7 @@ MonoBehaviour:
     m_Bits: 64
   jumpKey: 32
   sprintKey: 306
+  playerShoot: {fileID: 3891288129637320656}
   storePlayerOrientation: {fileID: 1419314437612035726}
   groundCheck: {fileID: 4150276157667180862}
   rb: {fileID: 0}

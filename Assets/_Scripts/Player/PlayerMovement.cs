@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 6f; //Debug
     public float movementMultiplier = 10f;
     public float airMovementMultiplier = 0.3f;
+    private float movementReduction = 1;
 
     float horizontalMovement;
     float verticalMovement;
@@ -43,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] KeyCode sprintKey = KeyCode.LeftControl;
 
     [Header("Local References")]
+    [SerializeField] PlayerShoot playerShoot;
     public Transform storePlayerOrientation;
     [SerializeField] Transform groundCheck;
     private PhysicMaterial playerPhysicsMat;
@@ -79,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
         DebugInput();
         
         ControlDrag();
+        ControlSpeed();
     }
 
     void MoveInput()
@@ -131,16 +134,16 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded && !OnSlope())
         {
             playerPhysicsMat.dynamicFriction = 0;
-            rb.AddForce(movementMultiplier * moveSpeed * moveDirection.normalized, ForceMode.Acceleration);
+            rb.AddForce(movementReduction * movementMultiplier * moveSpeed * moveDirection.normalized, ForceMode.Acceleration);
         }
         else if (isGrounded && OnSlope())
         {
             playerPhysicsMat.dynamicFriction = 1;
-            rb.AddForce(movementMultiplier * moveSpeed * slopeDirection.normalized, ForceMode.Acceleration);
+            rb.AddForce(movementReduction * movementMultiplier * moveSpeed * slopeDirection.normalized, ForceMode.Acceleration);
         }
         else if (!isGrounded)
         {
-            rb.AddForce(airMovementMultiplier * movementMultiplier * moveSpeed * moveDirection.normalized, ForceMode.Acceleration);
+            rb.AddForce(movementReduction * airMovementMultiplier * movementMultiplier * moveSpeed * moveDirection.normalized, ForceMode.Acceleration);
             rb.AddForce(-transform.up * fallForce, ForceMode.Acceleration);
         }
     }
@@ -163,6 +166,11 @@ public class PlayerMovement : MonoBehaviour
             //if (onWater) rb.drag = waterDrag;
         }
         else if (!isGrounded) rb.drag = airDrag;
+    }
+    void ControlSpeed() //This method should manage al types of speed buffs or debuffs
+    {
+        if (playerShoot.isCharging) movementReduction = 0.7f;
+        else movementReduction = 1;
     }
 
     RaycastHit slopeHit;
