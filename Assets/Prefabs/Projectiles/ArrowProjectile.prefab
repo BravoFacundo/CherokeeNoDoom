@@ -61,6 +61,7 @@ MonoBehaviour:
   initialSpeed: 50
   gravity: -9.81
   checkDistance: 1
+  shootDamage: 0
   ignoredColliders: []
   hitData: {fileID: 0}
   colliderObj: {fileID: 6631314502022447969}

@@ -149,13 +149,12 @@ MonoBehaviour:
   playerMovement: {fileID: 7451202812506219522}
   weaponObject: {fileID: 0}
   chargeTime: 0
-  shootChargeTime: 1
-  shootForceRange: {x: 35, y: 75}
+  shootChargeTime: 0.732
+  shootForceRange: {x: 35, y: 70}
   shootDamageRange: {x: 27.2, y: 120}
   shootReloadTime: 0.5
   aimSpeedReduction: 30
   animator: {fileID: 0}
-  moveSpeed: 35
 --- !u!20 &3850956203954360192
 Camera:
   m_ObjectHideFlags: 0
