@@ -90,9 +90,9 @@ public class Enemy : MonoBehaviour
         
         billboardSpriteRenderer.maxRotationX = 0;
 
-        Invoke(nameof(attackAnim), 0.5f);
+        Invoke(nameof(AttackAnim), 0.5f);
     }
-    private void attackAnim()
+    private void AttackAnim()
     {
         enemyAnimator.SetTrigger("Hide");
         enemyAttackAnimator.SetTrigger("Attack");

@@ -14158,7 +14158,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1090904216002114915, guid: 0f27a800ace609c41969cfd4c10b8188, type: 3}
       propertyPath: m_Color.a
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2085284504407233883, guid: 0f27a800ace609c41969cfd4c10b8188, type: 3}
       propertyPath: maxRotationX
