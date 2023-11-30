@@ -4,13 +4,5 @@ using UnityEngine;
 
 public class ShurikenCharacterShoot : PlayerShoot
 {
-    void Start()
-    {
-        
-    }
 
-    void Update()
-    {
-        
-    }
 }

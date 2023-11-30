@@ -37,7 +37,10 @@ public class BowCharacterShoot : PlayerShoot
     {
         base.Update();
 
-        ShootInput();
+        if (canShoot)
+        {
+            ShootInput();
+        }
     }
 
     private void ShootInput()

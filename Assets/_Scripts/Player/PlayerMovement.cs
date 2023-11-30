@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] KeyCode sprintKey = KeyCode.LeftControl;
 
     [Header("Local References")]
-    [SerializeField] PlayerShoot playerShoot;
+    [SerializeField] PlayerController playerController;
     public Transform storePlayerOrientation;
     [SerializeField] Transform groundCheck;
     private PhysicMaterial playerPhysicsMat;
@@ -57,31 +57,32 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        playerController = GetComponent<PlayerController>();
         cam = GetComponentInChildren<Camera>();
+        rb = GetComponent<Rigidbody>();
+        col = GetComponentInChildren<Collider>();
+        playerPhysicsMat = GetComponentInChildren<Collider>().material;
     }
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-        col = GetComponentInChildren<Collider>();
         storeJumps = aditionalJumps;
-        playerPhysicsMat = GetComponentInChildren<Collider>().material;
     }
     protected virtual void Update()
     {        
         slopeDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
 
+        ControlDrag();
+        ControlSpeed();
+        
         if (canMove)
         {
             MoveInput();
             SprintInput();
             JumpInput();
-        }
-
-        DebugInput();
+        }        
         
-        ControlDrag();
-        ControlSpeed();
+        DebugInput();
     }
 
     void MoveInput()
@@ -117,6 +118,14 @@ public class PlayerMovement : MonoBehaviour
                 readyToJump = true;
                 aditionalJumps -= 1;
             }
+        }
+    }
+    void DebugInput()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            //Application.LoadLevel(Application.loadedLevel);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
@@ -169,7 +178,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void ControlSpeed() //This method should manage al types of speed buffs or debuffs
     {
-        if (playerShoot.isCharging) movementReduction = 0.7f;
+        if (playerController.playerShoot.isCharging) movementReduction = 0.7f;
         else movementReduction = 1;
     }
 
@@ -213,12 +222,4 @@ public class PlayerMovement : MonoBehaviour
         cam.fieldOfView = initialFOV;
     }
 
-    void DebugInput()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            //Application.LoadLevel(Application.loadedLevel);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-    }
 }

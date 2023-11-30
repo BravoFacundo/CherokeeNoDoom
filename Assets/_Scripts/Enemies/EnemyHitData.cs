@@ -17,6 +17,6 @@ public class EnemyHitData : MonoBehaviour
         if (spriteRenderer == null) spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         if (meshRenderer == null) meshRenderer.GetComponent<MeshRenderer>();
         if (enemyScript == null) enemyScript.GetComponent<Enemy>();
-        if (dataTexture == null) dataTexture = enemyTransform.GetComponentInChildren<BillboardRenderer>().dataTexture;
+        if (dataTexture == null) dataTexture = enemyTransform.GetComponentInChildren<CustomBillboardRenderer>().dataTexture;
     }
 }

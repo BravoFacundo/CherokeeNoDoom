@@ -27,8 +27,11 @@ public class Enemy : MonoBehaviour
     public LayerMask playerLayer;
 
     [Header("Local References")]
+    [SerializeField] private CustomBillboardRenderer billboardSpriteRenderer;
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private Animator enemyAnimator;
+    [SerializeField] private Animator enemyAttackAnimator;
+    [SerializeField] Transform attackAnimPivot;
 
     [Header("References")]
     [SerializeField] Transform target;
@@ -37,8 +40,7 @@ public class Enemy : MonoBehaviour
     {
         if (target == null) target = GameObject.FindGameObjectWithTag("Player").transform;
 
-        agent = GetComponent<NavMeshAgent>();
-        enemyAnimator = gameObject.GetComponentInChildren<Animator>();        
+        agent = GetComponent<NavMeshAgent>();       
     }
 
     private void Start()
@@ -48,8 +50,6 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.F)) EnemyDie();
-
         if (!enemyDied && alreadyAttack == false)
         {
             if (playerInSightRange)
@@ -80,18 +80,24 @@ public class Enemy : MonoBehaviour
     }
     private void AttackPlayer()
     {
+        alreadyAttack = true;
+        agent.SetDestination(transform.position);        
         enemyAnimator.SetBool("Idle", true);
         enemyAnimator.SetBool("Run", false);
-        agent.SetDestination(transform.position);
-        alreadyAttack = true;
 
-        //Hardcoded
-        var deathScreen = GameObject.Find("DeathScreen").transform;
-        deathScreen.GetComponent<Image>().enabled = true;
-        deathScreen.GetChild(0).GetComponent<TMP_Text>().enabled = true;
-        target.GetComponent<PlayerMovement>().canMove = false;
-        target.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        target.GetComponent<PlayerController>().PlayerDie(attackAnimPivot);
+        agent.obstacleAvoidanceType = 0;
+        
+        billboardSpriteRenderer.maxRotationX = 0;
+
+        Invoke(nameof(attackAnim), 0.5f);
     }
+    private void attackAnim()
+    {
+        enemyAnimator.SetTrigger("Hide");
+        enemyAttackAnimator.SetTrigger("Attack");
+    }
+
     public void EnemyDie()
     {
         enemyDied = true;

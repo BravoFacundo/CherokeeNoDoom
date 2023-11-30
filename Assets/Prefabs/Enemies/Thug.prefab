@@ -169,7 +169,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7528535389840667926}
@@ -257,13 +257,14 @@ GameObject:
   m_Component:
   - component: {fileID: 8037500105426164373}
   - component: {fileID: 1090904216002114915}
+  - component: {fileID: 6745776232040092709}
   m_Layer: 7
-  m_Name: Sprite_Secondary
+  m_Name: Sprite_Attack
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8037500105426164373
 Transform:
   m_ObjectHideFlags: 0
@@ -273,9 +274,9 @@ Transform:
   m_GameObject: {fileID: 3475298354237259168}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 1.709, z: -0.05}
-  m_LocalScale: {x: 0.11000001, y: 0.11000001, z: 0.5238095}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: 0, y: 1.9, z: -0.01}
+  m_LocalScale: {x: 0.093, y: 0.093, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3549327407250147972}
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
@@ -331,6 +332,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!95 &6745776232040092709
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3475298354237259168}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8ee09dee4fb2327419d45852a656ba48, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5255311488323759879
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,7 +381,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.21000001, y: 0.21, z: 1}
+  m_LocalScale: {x: 0.235, y: 0.235, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3549327407250147972}
@@ -485,8 +507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasDebugCollider: 0
-  maxRotationX: 0
-  dataTextureMaterial: {fileID: 2100000, guid: b01a305fda5ffc643b00204a5141bfff, type: 2}
+  maxRotationX: 10
   dataTexture: {fileID: 2800000, guid: 7827f729401835848bbe8f1309f7a2ee, type: 3}
   spriteCollider: {fileID: 7297329661574004999, guid: 7c668b872c0584443a51f99554bfb8b9, type: 3}
   target: {fileID: 0}
@@ -551,8 +572,11 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
+  billboardSpriteRenderer: {fileID: 2085284504407233883}
   agent: {fileID: 0}
-  enemyAnimator: {fileID: 0}
+  enemyAnimator: {fileID: 8539226407519381245}
+  enemyAttackAnimator: {fileID: 6745776232040092709}
+  attackAnimPivot: {fileID: 8037500105426164373}
   target: {fileID: 0}
 --- !u!195 &904650588772135464
 NavMeshAgent:

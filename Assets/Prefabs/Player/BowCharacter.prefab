@@ -223,6 +223,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4759983575663878899}
+  - component: {fileID: 2053831550006280641}
   - component: {fileID: 7451202812506219522}
   - component: {fileID: 6933165372714164195}
   - component: {fileID: 1296534773614830216}
@@ -251,6 +252,21 @@ Transform:
   - {fileID: 1419314437612035726}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2053831550006280641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9017831891819164374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85cedb1b633a0074985ee8a967bbdfd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovement: {fileID: 0}
+  playerLook: {fileID: 0}
+  playerShoot: {fileID: 0}
 --- !u!114 &7451202812506219522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,6 +300,7 @@ MonoBehaviour:
     m_Bits: 64
   jumpKey: 32
   sprintKey: 306
+  playerLook: {fileID: 6933165372714164195}
   playerShoot: {fileID: 3891288129637320656}
   storePlayerOrientation: {fileID: 1419314437612035726}
   groundCheck: {fileID: 4150276157667180862}
@@ -310,6 +327,31 @@ MonoBehaviour:
   sensX: 150
   sensY: 150
   orientationObject: {fileID: 1419314437612035726}
+  totalRotationTime: 3
+  rotationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!54 &1296534773614830216
 Rigidbody:
   m_ObjectHideFlags: 0

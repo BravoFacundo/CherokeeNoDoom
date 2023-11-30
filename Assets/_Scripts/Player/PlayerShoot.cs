@@ -9,6 +9,7 @@ public class PlayerShoot : MonoBehaviour
     public ForceMode forceMode;
 
     [Header("States")]
+    public bool canShoot = true;
     public bool isCharging = false;
     public bool isWaiting = false;
     public bool isReloading = false;
@@ -17,7 +18,7 @@ public class PlayerShoot : MonoBehaviour
     public Rigidbody projectilePrefab;
 
     [Header("References")]
-    public PlayerMovement playerMovement;
+    public PlayerController playerController;
     public GameObject weaponObject;
     private Camera cam;
 

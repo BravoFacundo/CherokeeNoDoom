@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BillboardRenderer : MonoBehaviour
+public class CustomBillboardRenderer : MonoBehaviour
 {
     [Header("Debug")]
     [SerializeField] bool hasDebugCollider;
 
     [Header("Configuration")]
-    [SerializeField] float maxRotationX = 0f;
-    [SerializeField] Material dataTextureMaterial;
+    public float maxRotationX = 0f;
     public Texture2D dataTexture;
 
     [Header("Prefabs")]
@@ -24,7 +23,6 @@ public class BillboardRenderer : MonoBehaviour
     void Start()
     {
         if (target == null) target = GameObject.FindGameObjectWithTag("MainCamera").transform;
-        spriteColliderRenderer.material = dataTextureMaterial;
 
         if (hasDebugCollider)
         {
