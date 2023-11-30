@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public PlayerLook playerLook;
     [HideInInspector] public PlayerShoot playerShoot;
 
-    private bool isAlive = true;
+    public bool isAlive = true;
 
     private void Awake()
     {

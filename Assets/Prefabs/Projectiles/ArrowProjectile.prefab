@@ -60,7 +60,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialSpeed: 50
   gravity: -9.81
-  checkDistance: 1
+  checkDistance: 10
   shootDamage: 0
   ignoredColliders: []
   hitData: {fileID: 0}

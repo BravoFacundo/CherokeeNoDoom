@@ -8,19 +8,19 @@ using TMPro;
 public class Enemy : MonoBehaviour
 {
 
-    [Header("Stats")]
+    [Header("Configuration")]
     [SerializeField] private float health;
-    private bool enemyDied = false;
     [SerializeField] private float speed;
+    [SerializeField] private float speedGain;
+    [SerializeField] private float speedGainInterval;
     [SerializeField] private float sightRange;
-    [SerializeField] private bool playerInSightRange;
     [SerializeField] private float attackRange;
-    [SerializeField] private bool playerInAttackRange;
-    private bool alreadyAttack = false;
 
-    [Header("Attacking")]
-    public float timeBetweenAttacks;
-    bool alreadyAttacked;
+    [Header("States")]
+    [SerializeField] private bool playerInSightRange;
+    [SerializeField] private bool playerInAttackRange;
+    private bool enemyDied = false;
+    private bool alreadyAttack = false;
 
     [Header("Configuration")]
     public LayerMask groundLayer;
@@ -36,6 +36,8 @@ public class Enemy : MonoBehaviour
     [Header("References")]
     [SerializeField] Transform target;
 
+    private float elapsedTime = 0f;
+
     private void Awake()
     {
         if (target == null) target = GameObject.FindGameObjectWithTag("Player").transform;
@@ -50,6 +52,12 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+        StateMachine();
+        ControlSpeed();
+    }
+
+    void StateMachine()
+    {
         if (!enemyDied && alreadyAttack == false)
         {
             if (playerInSightRange)
@@ -60,10 +68,16 @@ public class Enemy : MonoBehaviour
             else if (!playerInAttackRange) WaitForPlayer();
         }
     }
-    private void FixedUpdate()
+
+    void ControlSpeed()
     {
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerLayer);
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerLayer);
+        elapsedTime += Time.deltaTime;
+        if (elapsedTime >= speedGainInterval)
+        {
+            speed += speedGain;
+            agent.speed = speed;
+            elapsedTime = 0f;
+        }
     }
 
     private void WaitForPlayer()
@@ -85,12 +99,13 @@ public class Enemy : MonoBehaviour
         enemyAnimator.SetBool("Idle", true);
         enemyAnimator.SetBool("Run", false);
 
-        target.GetComponent<PlayerController>().PlayerDie(attackAnimPivot);
-        agent.obstacleAvoidanceType = 0;
-        
         billboardSpriteRenderer.maxRotationX = 0;
+        agent.obstacleAvoidanceType = 0;
 
-        Invoke(nameof(AttackAnim), 0.5f);
+        var playerController = target.GetComponent<PlayerController>();
+        if (playerController.isAlive) Invoke(nameof(AttackAnim), 0.5f);
+        playerController.PlayerDie(attackAnimPivot);
+        
     }
     private void AttackAnim()
     {
@@ -118,5 +133,11 @@ public class Enemy : MonoBehaviour
         agent.speed = 0f;
         yield return new WaitForSeconds(0.5f);
         agent.speed = speed;
+    }
+
+    private void FixedUpdate()
+    {
+        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerLayer);
+        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerLayer);
     }
 }
