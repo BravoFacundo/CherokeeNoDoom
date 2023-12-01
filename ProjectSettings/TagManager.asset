@@ -17,8 +17,8 @@ TagManager:
   - Enemy
   - Player
   - Only Redered By Map
-  - 
-  - 
+  - IgnoredFromNavMesh
+  - PlayerCantPass
   - 
   - 
   - 
