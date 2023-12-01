@@ -44,6 +44,7 @@ public class PlayerLook : MonoBehaviour
         }
         else
         {
+            /*
             Vector3 directionToEnemy = lookTarget.position - cam.transform.position;
             
             float targetRotationX = Mathf.Atan2(directionToEnemy.y, directionToEnemy.z) * Mathf.Rad2Deg;
@@ -58,8 +59,9 @@ public class PlayerLook : MonoBehaviour
             float currentRotationY = Mathf.LerpAngle(Camera.main.transform.rotation.eulerAngles.y, targetRotationY, curveValue);
 
             cam.transform.rotation = Quaternion.Euler(currentRotationX, currentRotationY, 0f);
+            */
 
-            //cam.transform.LookAt(lookTarget);
+            cam.transform.LookAt(lookTarget);
         }
     }
 
@@ -72,11 +74,5 @@ public class PlayerLook : MonoBehaviour
         xRotation -= mouseY * sensY * multiplier;
 
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-    }
-
-    public void PlayerDie(Transform target)
-    {
-        lookTarget = target;
-        readyToLookTarget = true;
     }
 }

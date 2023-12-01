@@ -564,7 +564,7 @@ MonoBehaviour:
   speedGain: 0.1
   speedGainInterval: 5
   sightRange: 500
-  attackRange: 0.254
+  attackRange: 0.25
   playerInSightRange: 0
   playerInAttackRange: 0
   groundLayer:

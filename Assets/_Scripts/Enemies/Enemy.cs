@@ -99,11 +99,11 @@ public class Enemy : MonoBehaviour
         enemyAnimator.SetBool("Idle", true);
         enemyAnimator.SetBool("Run", false);
 
-        billboardSpriteRenderer.maxRotationX = 0;
+        billboardSpriteRenderer.maxRotationX = -5f;
         agent.obstacleAvoidanceType = 0;
 
         var playerController = target.GetComponent<PlayerController>();
-        if (playerController.isAlive) Invoke(nameof(AttackAnim), 0.5f);
+        if (playerController.isAlive) Invoke(nameof(AttackAnim), 0);
         playerController.PlayerDie(attackAnimPivot);
         
     }
