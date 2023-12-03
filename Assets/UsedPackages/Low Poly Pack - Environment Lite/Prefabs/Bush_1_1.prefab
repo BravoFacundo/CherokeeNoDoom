@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4122099175535646}
   - component: {fileID: 33736875719999688}
   - component: {fileID: 23169899140681984}
-  - component: {fileID: 5782365694300678030}
-  m_Layer: 0
+  - component: {fileID: 6088500747708665699}
+  m_Layer: 6
   m_Name: Bush_1_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,9 +27,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1800516850231240}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2652, y: 1.6126239, z: 1.2652}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -84,8 +84,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5782365694300678030
-MeshCollider:
+--- !u!136 &6088500747708665699
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -102,7 +102,8 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 709bdab3f0906d842bc57fe23d2883d6, type: 3}
+  serializedVersion: 2
+  m_Radius: 0.9190785
+  m_Height: 2.9577339
+  m_Direction: 1
+  m_Center: {x: 0.0000011622905, y: 1.3404084, z: -0.00000002980232}

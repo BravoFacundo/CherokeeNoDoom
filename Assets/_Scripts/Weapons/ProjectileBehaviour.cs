@@ -25,10 +25,6 @@ public class ProjectileBehaviour : MonoBehaviour
     private void Awake()
     {
         colliderObj.SetActive(false);
-    }
-
-    private void Start()
-    {
         rb = GetComponent<Rigidbody>();
     }
 

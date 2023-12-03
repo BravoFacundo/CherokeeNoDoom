@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         StateMachine();
-        ControlSpeed();
+        //ControlSpeed();
     }
 
     void StateMachine()
