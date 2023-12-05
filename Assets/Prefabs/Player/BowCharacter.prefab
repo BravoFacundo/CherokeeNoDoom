@@ -313,6 +313,7 @@ MonoBehaviour:
   playerMovement: {fileID: 0}
   playerLook: {fileID: 0}
   playerShoot: {fileID: 0}
+  playerHUD: {fileID: 0}
   isAlive: 1
 --- !u!114 &7451202812506219522
 MonoBehaviour:
@@ -346,6 +347,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   jumpKey: 32
+  readyToJump: 0
+  dashKey: 304
+  readyToDash: 0
   sprintKey: 306
   playerController: {fileID: 0}
   storePlayerOrientation: {fileID: 1419314437612035726}
@@ -353,7 +357,6 @@ MonoBehaviour:
   rb: {fileID: 0}
   col: {fileID: 0}
   cam: {fileID: 0}
-  dashKey: 304
   dashForce: 15
   dashCD: 3
   dashFOVChange: 100

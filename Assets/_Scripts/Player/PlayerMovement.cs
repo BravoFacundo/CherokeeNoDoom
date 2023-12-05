@@ -22,7 +22,6 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 25f;
     public float fallForce = 20f;
     float storeJumps;
-    private bool readyToJump;
 
     [Header("Sprinting")]
     [SerializeField] float walkSpeed = 5f;
@@ -41,10 +40,13 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Inputs")]
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
+    [HideInInspector] public bool readyToJump;
+    public KeyCode dashKey = KeyCode.LeftShift;
+    [HideInInspector] public bool readyToDash;
     [SerializeField] KeyCode sprintKey = KeyCode.LeftControl;
 
     [Header("Local References")]
-    [SerializeField] PlayerController playerController;
+    public PlayerController playerController;
     public Transform storePlayerOrientation;
     [SerializeField] Transform groundCheck;
     private PhysicMaterial playerPhysicsMat;
@@ -80,7 +82,8 @@ public class PlayerMovement : MonoBehaviour
             MoveInput();
             SprintInput();
             JumpInput();
-        }        
+            DashInput();
+        }
         
         DebugInput();
     }
@@ -120,6 +123,10 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+    void DashInput()
+    {
+        if (Input.GetKeyDown(dashKey)) readyToDash = true;
+    }
     void DebugInput()
     {
         if (Input.GetKeyDown(KeyCode.R))
@@ -135,8 +142,11 @@ public class PlayerMovement : MonoBehaviour
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        PlayerMove();
-        PlayerJump();
+        if (canMove)
+        {
+            PlayerMove();
+            PlayerJump();
+        }
     }
     void PlayerMove()
     {
