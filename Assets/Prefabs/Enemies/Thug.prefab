@@ -578,6 +578,7 @@ MonoBehaviour:
   enemyAnimator: {fileID: 8539226407519381245}
   enemyAttackAnimator: {fileID: 6745776232040092709}
   attackAnimPivot: {fileID: 8037500105426164373}
+  spriteCollider: {fileID: 2285663760849591771}
   target: {fileID: 0}
 --- !u!195 &904650588772135464
 NavMeshAgent:
