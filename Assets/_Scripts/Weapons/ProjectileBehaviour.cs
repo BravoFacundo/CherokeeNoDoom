@@ -64,15 +64,21 @@ public class ProjectileBehaviour : MonoBehaviour
 
                 break;
             }
-        }   
-        
+        }
+
+        /*
         if (!savedCheckDistance)
         {
             float travelDistance = Vector3.Distance(currentPosition, lastPos);
-            print(travelDistance);
-            checkDistance = travelDistance * 2.5f;
+            if (travelDistance >= checkDistance)
+            {
+                print(travelDistance);
+                Debug.LogError("Distance is 0");
+                checkDistance = travelDistance * 2.5f;
+            }
             savedCheckDistance = true;
         }
+        */
 
         lastPos = transform.position;
     }

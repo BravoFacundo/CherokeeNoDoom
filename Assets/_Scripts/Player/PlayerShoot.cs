@@ -36,7 +36,7 @@ public class PlayerShoot : MonoBehaviour
 
     public IEnumerator ShootProjectile(float _shootForce, float _shootReloadTime, float _shootDamage)
     {
-        Debug.LogError("stop");
+        //Debug.LogError("stop");
 
         isCharging = false;
         isReloading = true;
