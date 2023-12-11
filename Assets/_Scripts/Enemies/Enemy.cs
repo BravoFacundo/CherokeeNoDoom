@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
 {
 
     [Header("Configuration")]
-    [SerializeField] private float health;
+    public float health;
     [SerializeField] private float speed;
     [SerializeField] private float speedGain;
     [SerializeField] private float speedGainInterval;
@@ -32,6 +32,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Animator enemyAnimator;
     [SerializeField] private Animator enemyAttackAnimator;
     [SerializeField] Transform attackAnimPivot;
+    [SerializeField] GameObject spriteCollider;
 
     [Header("References")]
     [SerializeField] Transform target;
@@ -53,7 +54,7 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         StateMachine();
-        ControlSpeed();
+        //ControlSpeed();
     }
 
     void StateMachine()
@@ -72,7 +73,7 @@ public class Enemy : MonoBehaviour
     void ControlSpeed()
     {
         elapsedTime += Time.deltaTime;
-        if (elapsedTime >= speedGainInterval)
+        if (elapsedTime >= speedGainInterval && !enemyDied)
         {
             speed += speedGain;
             agent.speed = speed;
@@ -121,6 +122,7 @@ public class Enemy : MonoBehaviour
         enemyAnimator.SetBool("Run", false);
         agent.SetDestination(transform.position);
         Destroy(gameObject, 5f);
+        Destroy(spriteCollider);
     }
     public void EnemyDamage(float damage)
     {

@@ -1,22 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
     [HideInInspector] public PlayerMovement playerMovement;
     [HideInInspector] public PlayerLook playerLook;
     [HideInInspector] public PlayerShoot playerShoot;
+    [HideInInspector] public PlayerHUD playerHUD;
 
-    public bool isAlive = true;
+    [HideInInspector] public bool isAlive = true;
 
     private void Awake()
     {
         playerMovement = GetComponentInChildren<PlayerMovement>();
         playerLook = GetComponentInChildren<PlayerLook>();
         playerShoot = GetComponentInChildren<PlayerShoot>();
+
+        playerHUD = GameObject.FindWithTag("HUD").transform.GetComponent<PlayerHUD>();
     }
 
     public void PlayerDie(Transform target)
@@ -33,10 +34,7 @@ public class PlayerController : MonoBehaviour
             playerLook.lookTarget = target;
             playerLook.readyToLookTarget = true;
 
-            //Hardcoded
-            var deathScreen = GameObject.Find("DeathScreen").transform;
-            deathScreen.GetComponent<Image>().enabled = true;
-            deathScreen.GetChild(0).GetComponent<TMP_Text>().enabled = true;
+            playerHUD.DeathScreen(true);
         }
     }
 }

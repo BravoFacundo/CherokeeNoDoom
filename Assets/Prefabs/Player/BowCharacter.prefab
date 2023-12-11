@@ -148,11 +148,11 @@ MonoBehaviour:
   isWaiting: 0
   isReloading: 0
   projectilePrefab: {fileID: 7695209710422396911, guid: 393acfd54552bfb4c9774148ee8de0d9, type: 3}
-  playerController: {fileID: 0}
+  playerController: {fileID: 2053831550006280641}
   weaponObject: {fileID: 0}
   chargeTime: 0
   shootChargeTime: 0.732
-  shootForceRange: {x: 35, y: 65}
+  shootForceRange: {x: 35, y: 110}
   shootDamageRange: {x: 27.2, y: 120}
   shootReloadTime: 0.5
   aimSpeedReduction: 30
@@ -313,6 +313,8 @@ MonoBehaviour:
   playerMovement: {fileID: 0}
   playerLook: {fileID: 0}
   playerShoot: {fileID: 0}
+  playerHUD: {fileID: 0}
+  isAlive: 1
 --- !u!114 &7451202812506219522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,6 +347,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   jumpKey: 32
+  readyToJump: 0
+  dashKey: 304
+  readyToDash: 0
   sprintKey: 306
   playerController: {fileID: 0}
   storePlayerOrientation: {fileID: 1419314437612035726}
@@ -352,7 +357,6 @@ MonoBehaviour:
   rb: {fileID: 0}
   col: {fileID: 0}
   cam: {fileID: 0}
-  dashKey: 304
   dashForce: 15
   dashCD: 3
   dashFOVChange: 100

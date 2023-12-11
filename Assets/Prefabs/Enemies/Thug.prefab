@@ -559,7 +559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc3b758c42016ef4b8fa83de32100119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 240
+  health: 220
   speed: 4
   speedGain: 0.1
   speedGainInterval: 5
@@ -578,6 +578,7 @@ MonoBehaviour:
   enemyAnimator: {fileID: 8539226407519381245}
   enemyAttackAnimator: {fileID: 6745776232040092709}
   attackAnimPivot: {fileID: 8037500105426164373}
+  spriteCollider: {fileID: 2285663760849591771}
   target: {fileID: 0}
 --- !u!195 &904650588772135464
 NavMeshAgent:

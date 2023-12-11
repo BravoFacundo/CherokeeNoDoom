@@ -44,23 +44,6 @@ public class PlayerLook : MonoBehaviour
         }
         else
         {
-            /*
-            Vector3 directionToEnemy = lookTarget.position - cam.transform.position;
-            
-            float targetRotationX = Mathf.Atan2(directionToEnemy.y, directionToEnemy.z) * Mathf.Rad2Deg;
-            float targetRotationY = Mathf.Atan2(directionToEnemy.x, directionToEnemy.z) * Mathf.Rad2Deg;
-
-            elapsedTime += Time.deltaTime;
-
-            float t = Mathf.Clamp01(elapsedTime / totalRotationTime);
-            float curveValue = rotationCurve.Evaluate(t);
-
-            float currentRotationX = Mathf.LerpAngle(Camera.main.transform.rotation.eulerAngles.x, targetRotationX, curveValue);
-            float currentRotationY = Mathf.LerpAngle(Camera.main.transform.rotation.eulerAngles.y, targetRotationY, curveValue);
-
-            cam.transform.rotation = Quaternion.Euler(currentRotationX, currentRotationY, 0f);
-            */
-
             cam.transform.LookAt(lookTarget);
         }
     }
