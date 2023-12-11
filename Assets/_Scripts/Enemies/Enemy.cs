@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         StateMachine();
-        //ControlSpeed();
+        ControlSpeed();
     }
 
     void StateMachine()
@@ -123,6 +123,8 @@ public class Enemy : MonoBehaviour
         agent.SetDestination(transform.position);
         Destroy(gameObject, 5f);
         Destroy(spriteCollider);
+
+        GameObject.FindGameObjectWithTag("Spawner").GetComponent<EnemyMultiSpawner>().EnemyKilled();
     }
     public void EnemyDamage(float damage)
     {

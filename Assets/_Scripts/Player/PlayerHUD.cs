@@ -6,6 +6,10 @@ using UnityEngine;
 
 public class PlayerHUD : MonoBehaviour
 {
+    [Header("Score")]
+    public float enemyKillCount;
+    [SerializeField] float timeAlive;
+
     [Header("Hitmarker")]
     [SerializeField] GameObject Crosshair;
     [SerializeField] GameObject HitMark_Normal;
