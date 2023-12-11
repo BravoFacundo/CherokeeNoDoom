@@ -148,7 +148,7 @@ MonoBehaviour:
   isWaiting: 0
   isReloading: 0
   projectilePrefab: {fileID: 7695209710422396911, guid: 393acfd54552bfb4c9774148ee8de0d9, type: 3}
-  playerController: {fileID: 0}
+  playerController: {fileID: 2053831550006280641}
   weaponObject: {fileID: 0}
   chargeTime: 0
   shootChargeTime: 0.732

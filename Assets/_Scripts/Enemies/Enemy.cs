@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
 {
 
     [Header("Configuration")]
-    [SerializeField] private float health;
+    public float health;
     [SerializeField] private float speed;
     [SerializeField] private float speedGain;
     [SerializeField] private float speedGainInterval;
@@ -73,7 +73,7 @@ public class Enemy : MonoBehaviour
     void ControlSpeed()
     {
         elapsedTime += Time.deltaTime;
-        if (elapsedTime >= speedGainInterval)
+        if (elapsedTime >= speedGainInterval && !enemyDied)
         {
             speed += speedGain;
             agent.speed = speed;

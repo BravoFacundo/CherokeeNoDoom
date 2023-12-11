@@ -9,7 +9,6 @@ public class ProjectileBehaviour : MonoBehaviour
     public float shootDamage;
     public float initialSpeed = 110f;
     public float checkDistance = 2.5f;
-    private bool savedCheckDistance;
 
     [Header("Data")]
     [SerializeField] List<Collider> ignoredColliders = new();
@@ -23,6 +22,7 @@ public class ProjectileBehaviour : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private EnemyHitData hitData;
+    public PlayerHUD playerHUD;
 
     [Header("Check")]
     private Vector3 initialPos;
@@ -66,20 +66,6 @@ public class ProjectileBehaviour : MonoBehaviour
             }
         }
 
-        /*
-        if (!savedCheckDistance)
-        {
-            float travelDistance = Vector3.Distance(currentPosition, lastPos);
-            if (travelDistance >= checkDistance)
-            {
-                print(travelDistance);
-                Debug.LogError("Distance is 0");
-                checkDistance = travelDistance * 2.5f;
-            }
-            savedCheckDistance = true;
-        }
-        */
-
         lastPos = transform.position;
     }
 
@@ -108,7 +94,10 @@ public class ProjectileBehaviour : MonoBehaviour
             rb.isKinematic = true;
 
             var enemyHitData = hit.transform.GetComponent<EnemyHitData>();
-            enemyHitData.enemyScript.EnemyDamage(shootDamage * damage);
+            var currentHealth = enemyHitData.enemyScript.health - shootDamage * damage;
+            if (damage == 1) playerHUD.NormalHit(); else playerHUD.CriticalHit();
+            if (currentHealth <= 0) playerHUD.KillHit();            
+            enemyHitData.enemyScript.EnemyDamage(shootDamage * damage);            
 
             yield return new WaitForSeconds(0.2f);
             Destroy(gameObject);
