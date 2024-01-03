@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
             playerLook.lookTarget = target;
             playerLook.readyToLookTarget = true;
 
-            playerHUD.DeathScreen(true);
+            playerHUD.PlayerDie();
         }
     }
 }

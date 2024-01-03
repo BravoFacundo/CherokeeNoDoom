@@ -7,11 +7,17 @@ using UnityEngine;
 public class PlayerHUD : MonoBehaviour
 {
     [Header("Score")]
-    public int enemyKillCount;
-    [SerializeField] private TMP_Text text_Kills;
     [SerializeField] float timeAlive;
-    [SerializeField] private TMP_Text text_Time;
+    public int enemyKillCount;
     private bool timeIsOnPause = false;
+
+    [Header("Scoreboard")]
+    [SerializeField] private TMP_Text HUD_Time;
+    [SerializeField] private TMP_Text HUD_Kills;
+    [SerializeField] private TMP_Text Current_Time;
+    [SerializeField] private TMP_Text Current_Kills;
+    [SerializeField] private TMP_Text Best_Time;
+    [SerializeField] private TMP_Text Best_Kills;
 
     [Header("Hitmarker")]
     [SerializeField] GameObject Crosshair;
@@ -23,6 +29,7 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] Button dashSkill;
 
     [Header("Navigation")]
+    [SerializeField] GameObject screenObjetive;
     [SerializeField] GameObject screenDeath;
 
     private void Start()
@@ -41,7 +48,7 @@ public class PlayerHUD : MonoBehaviour
         if (!timeIsOnPause)
         {
             timeAlive += Time.deltaTime;
-            text_Time.text = NumberToText(timeAlive);
+            HUD_Time.text = NumberToText(timeAlive);
         }
     }
     public void PauseTime() => timeIsOnPause = true;
@@ -63,8 +70,8 @@ public class PlayerHUD : MonoBehaviour
 
     public void CleanScore()
     {
-        timeAlive = 0; text_Time.text = "00:00";
-        enemyKillCount = 0; text_Kills.text = "000";
+        timeAlive = 0; HUD_Time.text = "00:00";
+        enemyKillCount = 0; HUD_Kills.text = "000";
         timeIsOnPause = false;
     }
     public void SaveScore()
@@ -75,7 +82,7 @@ public class PlayerHUD : MonoBehaviour
     public void UpdateEnemyKills()
     {
         enemyKillCount++;
-        text_Kills.text = enemyKillCount.ToString("D3");
+        HUD_Kills.text = enemyKillCount.ToString("D3");
     }
 
     //---------- SKILLS -----------------------------------------------------------------------------------------------------------------//
@@ -84,7 +91,16 @@ public class PlayerHUD : MonoBehaviour
 
     //---------- NAVIGATION -----------------------------------------------------------------------------------------------------------------//
 
+    public void ObjetiveScreen(bool activeState) => screenObjetive.SetActive(activeState);
     public void DeathScreen(bool activeState) => screenDeath.SetActive(activeState);
+    public void PlayerDie()
+    {
+        PauseTime();
+        ObjetiveScreen(false);
+        DeathScreen(true);
+        Current_Time.text = NumberToText(timeAlive);
+        Current_Kills.text = enemyKillCount.ToString("D3");
+    } 
 
     //---------- CROSSHAIR -----------------------------------------------------------------------------------------------------------------//
 

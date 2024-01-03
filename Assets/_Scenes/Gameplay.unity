@@ -3594,7 +3594,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &144477206
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22114,7 +22114,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -155, y: -100}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 679, y: 400}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &822619640
 MonoBehaviour:
@@ -23528,9 +23528,9 @@ RectTransform:
   - {fileID: 1525021324}
   m_Father: {fileID: 822619639}
   m_LocalEulerAnglesHint: {x: -15, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 339.5, y: -260}
   m_SizeDelta: {x: 679, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &878110463
@@ -27079,9 +27079,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 822619639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 339.5, y: -365}
   m_SizeDelta: {x: 500, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1040316473
@@ -38860,9 +38860,9 @@ RectTransform:
   - {fileID: 1477627006}
   m_Father: {fileID: 822619639}
   m_LocalEulerAnglesHint: {x: -15, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 339.5, y: -30}
   m_SizeDelta: {x: 679, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1516461943
@@ -44690,9 +44690,9 @@ RectTransform:
   - {fileID: 1980147974}
   m_Father: {fileID: 822619639}
   m_LocalEulerAnglesHint: {x: -15, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 339.5, y: -130}
   m_SizeDelta: {x: 679, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1791868034
@@ -45603,15 +45603,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d9ead870b2f81a4595a8777f2e3ffcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyKillCount: 0
-  text_Kills: {fileID: 2088782050}
   timeAlive: 0
-  text_Time: {fileID: 1205767483}
+  enemyKillCount: 0
+  HUD_Time: {fileID: 1205767483}
+  HUD_Kills: {fileID: 2088782050}
+  Current_Time: {fileID: 291330391}
+  Current_Kills: {fileID: 1980147975}
+  Best_Time: {fileID: 876386828}
+  Best_Kills: {fileID: 1525021325}
   Crosshair: {fileID: 1363715665}
   HitMark_Normal: {fileID: 1940660074}
   HitMark_Critical: {fileID: 1868983357}
   HitMark_Kill: {fileID: 742037742}
   dashSkill: {fileID: 28103172}
+  screenObjetive: {fileID: 144477205}
   screenDeath: {fileID: 2034340080}
 --- !u!1 &1834032224
 GameObject:
@@ -50830,7 +50835,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2034340081
 RectTransform:
   m_ObjectHideFlags: 0
