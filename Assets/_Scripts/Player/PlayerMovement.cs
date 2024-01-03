@@ -132,6 +132,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             //Application.LoadLevel(Application.loadedLevel);
+            playerController.playerHUD.CleanScore();
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }

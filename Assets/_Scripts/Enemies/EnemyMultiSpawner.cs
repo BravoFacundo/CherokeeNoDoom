@@ -57,7 +57,7 @@ public class EnemyMultiSpawner : MonoBehaviour
 
     public void EnemyKilled()
     {
-        playerHUD.enemyKillCount++;
+        playerHUD.UpdateEnemyKills();
         currentSpawnedEnemies--;
         if (currentSpawnedEnemies < maxEnemySpawn)
         {            
