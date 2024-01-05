@@ -19,6 +19,7 @@ public class ProjectileBehaviour : MonoBehaviour
     [SerializeField] Rigidbody rb;
     [SerializeField] GameObject colliderObj;
     [SerializeField] GameObject modelObj;
+    [SerializeField] GameObject particlesObj;
 
     [Header("References")]
     [SerializeField] private EnemyHitData hitData;
@@ -50,7 +51,6 @@ public class ProjectileBehaviour : MonoBehaviour
 
             foreach (RaycastHit hit in newHits)
             {
-                //Debug.Log(hit.transform.parent.parent.name);
                 hitData = hit.transform.GetComponent<EnemyHitData>();
 
                 Texture2D dataTexture = hitData.dataTexture;
@@ -100,6 +100,10 @@ public class ProjectileBehaviour : MonoBehaviour
             enemyHitData.enemyScript.EnemyDamage(shootDamage * damage);            
 
             yield return new WaitForSeconds(0.2f);
+            
+            Destroy(particlesObj, 7f);
+            particlesObj.transform.parent = null;
+            
             Destroy(gameObject);
         }
     }

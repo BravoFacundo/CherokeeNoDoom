@@ -124,7 +124,7 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject, 5f);
         Destroy(spriteCollider);
 
-        GameObject.FindGameObjectWithTag("Spawner").GetComponent<EnemyMultiSpawner>().EnemyKilled();
+        GameObject.FindGameObjectWithTag("Spawner").GetComponent<EnemySpawner>().EnemyKilled();
     }
     public void EnemyDamage(float damage)
     {

@@ -7,11 +7,9 @@ using UnityEngine;
 public class PlayerHUD : MonoBehaviour
 {
     [Header("Score")]
-    [SerializeField] float timeAlive;
-    public int enemyKillCount;
-    private bool timeIsOnPause = false;
-
-    [Header("Scoreboard")]
+    [SerializeField] float currentTimeAlive;
+    public int currentKillCount;
+    [SerializeField] bool timeIsOnPause = false;
     [SerializeField] private TMP_Text HUD_Time;
     [SerializeField] private TMP_Text HUD_Kills;
     [SerializeField] private TMP_Text Current_Time;
@@ -32,9 +30,12 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] GameObject screenObjetive;
     [SerializeField] GameObject screenDeath;
 
+    [Header("References")]
+    [SerializeField] PlayerScore playerScore;
+
     private void Start()
     {
-        timeAlive = 0.0f;
+        currentTimeAlive = 0.0f;
     }
     private void Update()
     {
@@ -47,42 +48,24 @@ public class PlayerHUD : MonoBehaviour
     {
         if (!timeIsOnPause)
         {
-            timeAlive += Time.deltaTime;
-            HUD_Time.text = NumberToText(timeAlive);
+            currentTimeAlive += Time.deltaTime;
+            HUD_Time.text = playerScore.NumberToText(currentTimeAlive);
         }
     }
     public void PauseTime() => timeIsOnPause = true;
     public void ContinueTime() => timeIsOnPause = false;
 
-    public string NumberToText(float time)
+    public void UpdateEnemyKills()
     {
-        int minutes = Mathf.FloorToInt(time / 60);
-        int seconds = Mathf.FloorToInt(time % 60);
-        return string.Format("{0:00}:{1:00}", minutes, seconds);
-    }
-    public float TextToNumber(string text)
-    {
-        string[] parts = text.Split(':');
-        int minutes = int.Parse(parts[0]);
-        int seconds = int.Parse(parts[1]);
-        return minutes * 60 + seconds;
+        currentKillCount++;
+        HUD_Kills.text = currentKillCount.ToString("D3");
     }
 
     public void CleanScore()
     {
-        timeAlive = 0; HUD_Time.text = "00:00";
-        enemyKillCount = 0; HUD_Kills.text = "000";
+        currentTimeAlive = 0; HUD_Time.text = "00:00";
+        currentKillCount = 0; HUD_Kills.text = "000";
         timeIsOnPause = false;
-    }
-    public void SaveScore()
-    {
-        Debug.Log("Tiempo guardado: " + timeAlive);
-    }
-
-    public void UpdateEnemyKills()
-    {
-        enemyKillCount++;
-        HUD_Kills.text = enemyKillCount.ToString("D3");
     }
 
     //---------- SKILLS -----------------------------------------------------------------------------------------------------------------//
@@ -98,8 +81,22 @@ public class PlayerHUD : MonoBehaviour
         PauseTime();
         ObjetiveScreen(false);
         DeathScreen(true);
-        Current_Time.text = NumberToText(timeAlive);
-        Current_Kills.text = enemyKillCount.ToString("D3");
+                
+        ScoreData currentScore = new ScoreData();
+        currentScore.timeAlive = playerScore.NumberToText(currentTimeAlive);
+        currentScore.killCount = currentKillCount.ToString("D3");
+        
+        Current_Time.text = currentScore.timeAlive;
+        Current_Kills.text = currentScore.killCount;
+
+        ScoreData bestScore;
+        if (!playerScore.CheckForSavedData()) bestScore = currentScore;
+        else bestScore = playerScore.CheckForBestScore(currentScore);
+
+        Best_Time.text = bestScore.timeAlive;
+        Best_Kills.text = bestScore.killCount;
+
+        playerScore.SaveToJson(bestScore);
     } 
 
     //---------- CROSSHAIR -----------------------------------------------------------------------------------------------------------------//
