@@ -1,8 +1,8 @@
+*This readme is written in SPANISH. If you prefer, you can read this in [English](README.md).*
+
 # Cherokee No Doom
 
 [En progreso] Videojuego de disparos basado en gráficos “Billboard” o 2.5 Dimensiones. Hecho en Unity, C#.
-
-*If you prefer, you can read this in [English](README.md)*
 
 # Tecnologías
 
