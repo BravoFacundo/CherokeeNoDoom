@@ -34,6 +34,12 @@ Allowing to determine areas that multiply the damage or trigger certain events.
 
 *See the example script [here](Assets/_Scripts/_Examples/SpriteImpactDetectionExample.cs).*
 
+## Image gallery
+
+![Github_CherokeeNoDoom_01](https://github.com/BravoFacundo/CherokeeNoDoom/assets/88951560/4e8304ef-d85f-4e76-b2e9-9cdf6a6aea3a)
+![Github_CherokeeNoDoom_02](https://github.com/BravoFacundo/CherokeeNoDoom/assets/88951560/3f080416-4e23-4f9e-acc7-25a29de84679)
+![Github_CherokeeNoDoom_03](https://github.com/BravoFacundo/CherokeeNoDoom/assets/88951560/fe61b91e-d11c-45bd-90f3-8ed5cfb540c9)
+
 ## Links and credits
 
 Animations were reused from another collaborative video game project ([Cherokee No Doom](https://github.com/BravoFacundo/CherokeeNoFood)).
