@@ -32,6 +32,12 @@ Si pertenece a la parte invisible de la imagen (su alpha) entonces no se conside
 De igual manera se puede chequear la misma coordenada del impacto sobre distintas texturas almacenadas (Que también pueden estar animadas).
 Permitiendo determinar áreas que multiplican el daño o activan (Trigger) determinados eventos.
 
+## Image gallery
+
+![Github_CherokeeNoDoom_01](https://github.com/BravoFacundo/CherokeeNoDoom/assets/88951560/4e8304ef-d85f-4e76-b2e9-9cdf6a6aea3a)
+![Github_CherokeeNoDoom_02](https://github.com/BravoFacundo/CherokeeNoDoom/assets/88951560/3f080416-4e23-4f9e-acc7-25a29de84679)
+![Github_CherokeeNoDoom_03](https://github.com/BravoFacundo/CherokeeNoDoom/assets/88951560/fe61b91e-d11c-45bd-90f3-8ed5cfb540c9)
+
 # Créditos y links
 
 Se reutilizaron las animaciones de un proyecto colaborativo previo (videojuego).
