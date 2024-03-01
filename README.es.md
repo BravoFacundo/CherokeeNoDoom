@@ -4,7 +4,7 @@
 
 [En progreso] Videojuego de disparos basado en gráficos “Billboard” o 2.5 Dimensiones. Hecho en Unity, C#.
 
-# Tecnologías
+## Tecnologías
 
 Desarrollado utilizando:
 - Lenguaje C#
@@ -12,7 +12,7 @@ Desarrollado utilizando:
 
 *Puedes ver el código [aquí](Assets/_Scripts/).*
 
-# Idea y desarrollo
+## Idea y desarrollo
 
 Este videojuego está diseñado para explorar el desarrollo de un shooter retro así como la implementación de gráficos billboard en un juego de disparos y precisión.
 
@@ -21,7 +21,7 @@ El desafío propuesto aquí es utilizar el sprite como sistema de detección de 
 
 Realizar un shooter retro me permite limitar el tamaño del proyecto y diferentes aspectos que complejizan la utilización de gráficos billboard, tales como: animaciones necesarias, ángulos de visualización, reacciones a mecánicas, etc.
 
-# Implementación
+## Implementación
 
 Para lograr la utilización del sprite como hitbox se implementó un sistema de raycast con detección de coordenadas de impacto sobre la textura del sprite.
 Posteriormente se chequea si el pixel en esa coordenada pertenece al alpha de la imagen.
@@ -40,7 +40,7 @@ Permitiendo determinar áreas que multiplican el daño o activan (Trigger) deter
 ![Github_CherokeeNoDoom_02](https://github.com/BravoFacundo/CherokeeNoDoom/assets/88951560/3f080416-4e23-4f9e-acc7-25a29de84679)
 ![Github_CherokeeNoDoom_03](https://github.com/BravoFacundo/CherokeeNoDoom/assets/88951560/fe61b91e-d11c-45bd-90f3-8ed5cfb540c9)
 
-# Créditos y links
+## Créditos y links
 
 Se reutilizaron las animaciones de un proyecto colaborativo previo (videojuego).
 
