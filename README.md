@@ -42,7 +42,7 @@ Allowing to determine areas that multiply the damage or trigger certain events.
 
 ## Links and credits
 
-Animations were reused from another collaborative video game project ([Cherokee No Doom](https://github.com/BravoFacundo/CherokeeNoFood)).
+Animations were reused from another collaborative video game project ([Cherokee No Food](https://github.com/BravoFacundo/CherokeeNoFood)).
 
 2D Artists:
 - Dose (Jose Bayugar): [Behance](https://www.behance.net/bayugarj79c4) - [Instagram](https://www.instagram.com/dose_jb/)
