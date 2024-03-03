@@ -42,7 +42,7 @@ Permitiendo determinar áreas que multiplican el daño o activan (Trigger) deter
 
 ## Créditos y links
 
-Se reutilizaron las animaciones de un proyecto colaborativo previo (videojuego).
+Se reutilizaron las animaciones de un proyecto colaborativo previo ([Cherokee No Food](https://github.com/BravoFacundo/CherokeeNoFood)).
 
 Artistas 2D:
 - Dose (Jose Bayugar): [Behance](https://www.behance.net/bayugarj79c4) - [Instagram](https://www.instagram.com/dose_jb/)
