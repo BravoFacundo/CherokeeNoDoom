@@ -2,7 +2,7 @@
 
 # Cherokee No Doom
 
-[Work in progress] Shooting video game based on “Billboard” graphics or 2.5 D. Made in Unity, C#.
+[Work in progress] Shooter videogame based on “Billboard” graphics or 2.5 D. Made in Unity, C#.
 
 ## Technologies
 
